@@ -1,0 +1,24 @@
+h1 {
+  color: blue;
+}
+h2 {
+  color: orange;
+}
+
+.blue-list {
+  color: blue;
+  list-style-type: square;
+}
+
+.black-list {
+  color: black;
+  list-style-type: disc;
+}
+
+.red-list {
+  color: red;
+}
+
+.ordered-list {
+  color: black;
+}
