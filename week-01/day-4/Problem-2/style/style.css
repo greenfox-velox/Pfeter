@@ -1,0 +1,16 @@
+.yellow-box {
+  padding: 20px;
+  border: 4px solid black;
+  background-color: #ffff00;
+  width: 200px;
+  height: 30px;
+  font-size: 30px;
+  color: #2100b2;
+}
+
+.green-box {
+  margin: 10px;
+  padding: 20px;
+  background-color: #018000;
+  width: 248px;
+}
