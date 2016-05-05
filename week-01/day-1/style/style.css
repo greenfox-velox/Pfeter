@@ -31,15 +31,12 @@ body {
   color: rgba(0,0,0,.8);
 }
 
-article {
-}
-
-a{
+a {
   color: black;
   font-weight: 700;
 }
 
-.elvalaszto{
+.article-separator {
   content: '...';
   display: inline-block;
   color: rgba(0,0,0,.6);
@@ -47,27 +44,27 @@ a{
   top: -30px;
 }
 
-.valasz{
+.article-answer {
   font-weight: normal;
 }
 
-.kerdes{
+.article-question {
   font-weight: bold;
 }
 
-.cimkep {
+.title-picture {
   width: 100%;
   padding: 0px;
   margin: 0px;
 }
 
-.szovegtorzs {
+.body-text {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.markup {
+.foreword-markup {
   margin-top: 30px;
   font-style: italic;
   font-size: 21px;
