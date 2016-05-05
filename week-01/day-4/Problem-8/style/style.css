@@ -1,0 +1,20 @@
+div {
+  width: 200px;
+  border: 2px solid black;
+  margin-bottom: 20px;
+  padding: 40px;
+  font-size: 18px;
+  background: url(../images/duck.png) no-repeat;
+}
+
+.duck-middle-left {
+  background-position: 0px 40px;
+}
+
+.duck-center {
+  background-position: center;
+}
+
+.duck-bottom-right {
+  background-position: bottom right;
+}
