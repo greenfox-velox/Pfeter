@@ -5,14 +5,12 @@ body {
 .page-content {
   width: 1280px;
   margin: 0px auto 0px auto;
-  border-top: 4px;
-  border-color: black;
   background: url(../images/anakin.png) no-repeat;
   background-size: 100%;
 }
 
 header {
-  padding: 250px 0px 0px 300px;
+  padding: 220px 0px 0px 290px;
   font-family: "Abril Fatface", cursive;
   font-size: 36px;
   font
@@ -38,8 +36,12 @@ blockquote {
   line-height: 72px;
 }
 
+.first-box {
+  margin-top: 110px;
+}
+
 .normal-box, .first-box {
-    padding: 50px;
+    padding: 0px 50px 50px 50px;
 }
 
 .normal-box li, .normal-box {
@@ -54,16 +56,20 @@ h1 {
 }
 
 h2 {
-  margin: 60px 0px 60px 0px;
-  font-size: 18px;
+  margin: 50px 0px 50px 0px;
+  font-size: 24px;
+  font-weight: bolder;
+  letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 h3 {
+  margin: 40px 0px 0px 0px;
   font-size: 24px;
 }
 
 h4 {
+  margin: 0px;
   font-style: italic;
 }
 
@@ -73,10 +79,11 @@ li {
 }
 
 hr {
-  size: 2px;
-  color: #222;
+  margin-top: 50px;
+  border: 2px solid #222;
 }
 
 p {
-  margin: 0px;
+  margin: 30px 0px 0px 0px;
+  line-height: 1.5em;
 }
