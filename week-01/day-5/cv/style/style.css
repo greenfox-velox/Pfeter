@@ -1,0 +1,56 @@
+.page-content {
+  width: 1280px;
+  margin: 0px auto 0px auto;
+  background: url(../images/anakin.png) no-repeat;
+  background-size: 100%;
+}
+
+header {
+  padding: 250px 0px 0px 300px;
+  font-family: "Abril Fatface", cursive;
+  font-size: 36px;
+}
+
+main {
+  width: 795px;
+  margin: 0px auto 0px auto;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+}
+
+blockquote {
+  margin: 0px;
+  padding: 65px 50px 65px 50px;
+  background-color: #444444;
+  font-family: "Abril Fatface", cursive;
+  font-size: 40px;
+  color: white;
+}
+
+.normal-box {
+    padding: 50px;
+}
+
+.normal-box li {
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 72px;
+  font-weight: lighter;
+}
+
+h2 {
+  margin: 60px 0px 60px 0px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-style: italic;
+}
+
+li {
+  list-style: square;
+  line-height: 1.5em;
+}
