@@ -11,16 +11,13 @@ body {
 
 header {
   padding: 220px 0 0 290px;
-  font-family: "Abril Fatface", cursive;
-  font-size: 36px;
+  font: 36px "Abril Fatface", cursive;
 }
 
 main {
   width: 795px;
   margin: 70px auto 0;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 20px;
-  line-height: 1.5em;
+  font: 20px/1.5em "Josefin Sans", sans-serif;
 }
 
 blockquote {
@@ -29,10 +26,8 @@ blockquote {
   background-color: #444444;
   background-image: url(../images/quote.png);
   background-repeat: no-repeat;
-  font-family: "Abril Fatface", cursive;
-  font-size: 48px;
+  font: 48px/72px "Abril Fatface", cursive;
   color: white;
-  line-height: 72px;
 }
 
 .first-box {
