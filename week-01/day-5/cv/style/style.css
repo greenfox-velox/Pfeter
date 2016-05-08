@@ -4,13 +4,13 @@ body {
 
 .page-content {
   width: 1280px;
-  margin: 0px auto 0px auto;
+  margin: 0 auto 0 auto;
   background: url(../images/anakin.png) no-repeat;
   background-size: 100%;
 }
 
 header {
-  padding: 220px 0px 0px 290px;
+  padding: 220px 0 0 290px;
   font-family: "Abril Fatface", cursive;
   font-size: 36px;
   font
@@ -18,15 +18,15 @@ header {
 
 main {
   width: 795px;
-  margin: 70px auto 0px auto;
+  margin: 70px auto 0 auto;
   font-family: "Josefin Sans", sans-serif;
   font-size: 20px;
   line-height: 1.5em;
 }
 
 blockquote {
-  margin: 0px;
-  padding: 50px 0px 65px 50px;
+  margin: 0;
+  padding: 50px 0 65px 50px;
   background-color: #444444;
   background-image: url(../images/quote.png);
   background-repeat: no-repeat;
@@ -41,7 +41,7 @@ blockquote {
 }
 
 .normal-box, .first-box {
-    padding: 0px 50px 50px 50px;
+    padding: 0 50px 50px 50px;
 }
 
 .normal-box li, .normal-box {
@@ -49,14 +49,14 @@ blockquote {
 }
 
 h1 {
-  margin: 0px;
+  margin: 0;
   font-size: 72px;
   font-weight: lighter;
   line-height: 55px;
 }
 
 h2 {
-  margin: 50px 0px 50px 0px;
+  margin: 50px 0 50px 0;
   font-size: 24px;
   font-weight: bolder;
   letter-spacing: 3px;
@@ -64,12 +64,12 @@ h2 {
 }
 
 h3 {
-  margin: 40px 0px 0px 0px;
+  margin: 40px 0 0 0;
   font-size: 24px;
 }
 
 h4 {
-  margin: 0px;
+  margin: 0;
   font-style: italic;
 }
 
@@ -84,6 +84,6 @@ hr {
 }
 
 p {
-  margin: 30px 0px 0px 0px;
+  margin: 30px 0 0 0;
   line-height: 1.5em;
 }
