@@ -1,0 +1,26 @@
+body {
+  width: 550px;
+  border: 1px solid black;
+  padding: 35px 25px;
+}
+
+p{
+  margin: 0;
+  text-align: justify;
+} 
+
+.first-paragraph-left-duck {
+  float: left;
+  margin: 0 20px 30px 0;
+}
+
+.second-paragraph-right-duck {
+  float: right;
+  margin: 0 0 30px 20px;
+}
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  border: 1px solid black;
+}
