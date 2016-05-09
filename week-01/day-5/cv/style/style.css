@@ -34,11 +34,11 @@ blockquote {
   margin-top: 110px;
 }
 
-.normal-box, .first-box {
+.introduction, .notable-achievements, .experience, .formal-training {
   padding: 0 50px 50px;
 }
 
-.normal-box li, .normal-box {
+.notable-achievements, .experience li, .formal-training li {
   font-size: 16px;
 }
 
