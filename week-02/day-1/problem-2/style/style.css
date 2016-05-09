@@ -8,18 +8,18 @@ header {
   background-color: aqua;
 }
 
-main {
+section {
   height: 500px;
   display: flex;
   justify-content: space-between;
 }
 
-.leftside {
+nav {
   width: 100px;
   background-color: orange;
 }
 
-.center {
+main {
   width: 300px;
   background-color: red;
   position: relative;
@@ -34,7 +34,7 @@ main {
   right: 20px;
 }
 
-.rightside {
+aside {
   width: 100px;
   background-color: purple;
 }
