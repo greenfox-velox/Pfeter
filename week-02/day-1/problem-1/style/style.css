@@ -1,0 +1,19 @@
+body {
+  width: 300px;
+  border: 1px solid black;
+  padding: 15px 50px 50px 35px;
+}
+
+p{
+  margin: 0;
+} 
+
+.first-paragraph-left-duck {
+  float: left;
+  margin: 0 20px 30px 0;
+}
+
+.second-paragraph-right-duck {
+  float: right;
+  margin: 0 0 30px 20px;
+}
