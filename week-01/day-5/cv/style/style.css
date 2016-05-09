@@ -1,12 +1,9 @@
 body {
   color: #222;
-}
-
-.page-content {
   width: 1280px;
   margin: 0 auto;
-  background: url(../images/anakin.png) no-repeat;
-  background-size: 100%;
+  background: 50% 0% url(../images/anakin.png) no-repeat;
+  background-size: 1280px;
 }
 
 header {
