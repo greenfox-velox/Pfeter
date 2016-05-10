@@ -1,8 +1,32 @@
 form {
+  box-sizing: border-box;
   width: 820px;
+  margin: 0 auto;
+  padding: 55px 100px;
   background: #DCD6CD;
+  font-family: helvetica;
+}
+
+.flex-row-spcbetween {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.flex-column, .contact-informations, .personal-informations, .introduction {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.personal-informations, .contact-informations {
+  width: 300px;
 }
 
 .grey-section-header {
   background: #938C97;
+  color: white;
+}
+
+h1 {
+  color: #5D566F;
 }
