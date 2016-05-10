@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Week-02 Day-2 Form</title>
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+  <body>
+    <form action="" method="post">
+      <section class="personal-information">
+        <p class="grey-section-header">Személyes adatok</p>
+        <label for="name">Név</label>
+        <input type="text" id="name" name="user_name">
+        <label for="date-of-birth">Születési éved</label>
+        <input type="number" id="date-of-birth" name="date_of_birth">
+        <input type="radio" id="sex-woman" value="woman" name="sex" selected>
+        <label for="sex-woman">Nő</label>
+        <input type="radio" id="sex-man" value="man" name="sex">
+        <label for="sex-man">Férfi</label>
+        <label for="brand-select">Milyen márkákat szeretsz?</label>
+        <input type="checkbox" id="checkbox-adidas" name="brands[]" value="Aidas">
+        <label for="checkbox-adidas">Adidas</label>
+        <input type="checkbox" id="checkbox-apple" name="brands[]" value="Apple">
+        <label for="checkbox-apple">Apple</label>
+        <input type="checkbox" id="checkbox-coca-cola" name="brands[]" value="Coca-cola">
+        <label for="checkbox-coca-cola">Coca-cola</label>
+        <input type="checkbox" id="checkbox-mazda" name="brands[]" value="Mazda">
+        <label for="checkbox-mazda">Mazda</label>
+        <input type="checkbox" id="checkbox-nike" name="brands[]" value="Nike">
+        <label for="checkbox-nike"> Nike</label>
+        <input type="checkbox" id="checkbox-opel" name="brands[]" value="Opel">
+        <label for="checkbox-opel">Opel</label>
+        <input type="checkbox" id="checkbox-ray-ban" name="brands[]" value="Ray-Ban">
+        <label for="checkbox-ray-ban">Ray-Ban</label>
+        <input type="checkbox" id="checkbox-starbucks" name="brands[]" value="Starbucks">
+        <label for="checkbox-starbucks">Starbucks</label>
+        <input type="checkbox" id="checkbox-tesla" name="brands[]" value="Tesla">
+        <label for="checkbox-tesla">Tesla</label>
+        <input type="checkbox" id="checkbox-yahoo" name="brands[]" value="Yahoo">
+        <label for="checkbox-yahoo">Yahoo</label>
+        <p class="gray-hint">Többet is választhatsz!</p>
+      </section>
+      <section class="contact">
+        <p class="grey-section-header">Kapcsolat</p>
+        <label for="telephone-number">Telefonszám</label>
+        <input type="tel" id="telephone-number" name="telephone_number">
+        <label for="email-address">E-mail cím</label>
+        <input type="email" id="email-address" name="email_adress">
+        <label for="facebook-address">Facebook profilod</label>
+        <input type="url" id="facebook-address" name="facebook_url">
+        <label for="twitter-address">Facebook profilod</label>
+        <input type="url" id="twitter-address" name="twitter_url">
+        <label for="type-of-houses">Milyen házban laksz?</label>
+        <input list="houses" id="type-of-houses" name="house_type">
+        <datalist id="houses">
+          <option value="House">Családiház</option>
+          <option value="Flat">Lakás</option>
+          <option value="Rent">Albérlet</option>
+        </datalist>
+      </section>
+      <section class="Introduction">
+        <label for="introduction-text">Bemutatkozás</label>
+        <textarea id="introduction-text" name="introduction_text"></textarea>
+        <label for="cv-upload">CV feltöltése</label>
+        <input type="file" id="cv-upload" name="cv_file">
+      </section>
+      <section class="send">
+        <input type="checkbox" id="EULA-check" name="EULA_check">
+        <label for="EULA-check">Elfogadom a felhasználási feltételeket</label>
+        <button name="save-button">MENTÉS</button>
+        <button name="clear-form-button">ŰRLAP TÖRLÉSE</button>
+      </section>
+    </form>
+  </body>
+</html>
