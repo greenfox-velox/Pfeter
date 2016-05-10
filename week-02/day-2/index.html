@@ -12,7 +12,7 @@
         <label for="name">Név</label>
         <input type="text" id="name" name="user_name">
         <label for="date-of-birth">Születési éved</label>
-        <input type="number" id="date-of-birth" name="date_of_birth">
+        <input type="number" id="date-of-birth" name="date_of_birth" placeholder="pl. 1984">
         <input type="radio" id="sex-woman" value="woman" name="sex" selected>
         <label for="sex-woman">Nő</label>
         <input type="radio" id="sex-man" value="man" name="sex">
@@ -43,15 +43,15 @@
       <section class="contact">
         <p class="grey-section-header">Kapcsolat</p>
         <label for="telephone-number">Telefonszám</label>
-        <input type="tel" id="telephone-number" name="telephone_number">
+        <input type="tel" id="telephone-number" name="telephone_number" placeholder="+36 -- --- ----">
         <label for="email-address">E-mail cím</label>
-        <input type="email" id="email-address" name="email_adress">
+        <input type="email" id="email-address" name="email_adress" placeholder="nev@domain.hu">
         <label for="facebook-address">Facebook profilod</label>
-        <input type="url" id="facebook-address" name="facebook_url">
+        <input type="url" id="facebook-address" name="facebook_url" placeholder="http://facebook.com/...">
         <label for="twitter-address">Facebook profilod</label>
-        <input type="url" id="twitter-address" name="twitter_url">
+        <input type="url" id="twitter-address" name="twitter_url" placeholder="http://twitter.com/...">
         <label for="type-of-houses">Milyen házban laksz?</label>
-        <input list="houses" id="type-of-houses" name="house_type">
+        <input list="houses" id="type-of-houses" name="house_type" placeholder="Válassz típust!">
         <datalist id="houses">
           <option value="House">Családiház</option>
           <option value="Flat">Lakás</option>
@@ -60,7 +60,7 @@
       </section>
       <section class="Introduction">
         <label for="introduction-text">Bemutatkozás</label>
-        <textarea id="introduction-text" name="introduction_text"></textarea>
+        <textarea id="introduction-text" name="introduction_text" placeholder="Írj magadról pár mondatot!"></textarea>
         <label for="cv-upload">CV feltöltése</label>
         <input type="file" id="cv-upload" name="cv_file">
       </section>
