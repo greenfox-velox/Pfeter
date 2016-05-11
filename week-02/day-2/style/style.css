@@ -64,6 +64,8 @@ input, .grey-section-header {
 
 .file-select-button {
   width: 220px;
+  background: #F6F6F6;
+  color: #453E5B;
 }
 
 h1 {
@@ -99,23 +101,30 @@ textarea {
   width: 140px;
 }
 
-input[type="checkbox"] {
-  height: 20px;
-  width: 20px;
-  margin: 0 8px 0 0;
-  border-radius: 3px;
-  position: relative;
-  top: 5px;
-}
-
 #date-of-birth {
   width: 64px;
 }
 
+input[type="checkbox"] {
+  border-radius: 3px;
+}
+
 input[type="radio"] {
+ border-radius: 50%;
+}
+
+input[type="checkbox"], input[type="radio"] {
   height: 20px;
   width: 20px;
   margin: 0 8px 0 0;
   position: relative;
   top: 5px;
+}
+
+.red-star {
+  color: red;
+}
+
+.EULA {
+  margin:15px 0 30px 0;
 }

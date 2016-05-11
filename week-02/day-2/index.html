@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style/style.css">
   </head>
   <body>
-    <form action="" method="post">
+    <form action="#" method="post">
       <h1>Profil</h1>
       <section class="flex-row-spcbetween">
         <section class="personal-informations">
           <p class="grey-section-header">Személyes adatok</p>
-          <label for="name">Név</label>
-          <input type="text" id="name" name="user_name">
+          <label for="name">Név<span class="red-star"> *</span></label>
+          <input type="text" id="name" name="user_name" required>
           <section class="flex-row-spcbetween">
             <section class="flex-column">
               <label for="date-of-birth">Születési éved</label>
@@ -47,13 +47,13 @@
         </section>
         <section class="contact-informations">
           <p class="grey-section-header">Kapcsolat</p>
-          <label for="telephone-number">Telefonszám</label>
+          <label for="telephone-number">Telefonszám<span class="red-star"> *</span></label>
           <input type="tel" id="telephone-number" name="telephone_number" placeholder="+36 -- --- ----">
-          <label for="email-address">E-mail cím</label>
+          <label for="email-address">E-mail cím<span class="red-star"> *</span></label>
           <input type="email" id="email-address" name="email_adress" placeholder="nev@domain.hu">
           <label for="facebook-address">Facebook profilod</label>
           <input type="url" id="facebook-address" name="facebook_url" placeholder="http://facebook.com/...">
-          <label for="twitter-address">Facebook profilod</label>
+          <label for="twitter-address">Twitter profilod</label>
           <input type="url" id="twitter-address" name="twitter_url" placeholder="http://twitter.com/...">
           <label for="type-of-houses">Milyen házban laksz?</label>
           <input list="houses" id="type-of-houses" name="house_type" placeholder="Válassz típust!">
@@ -65,12 +65,12 @@
         </section>
       </section>
       <section class="introduction">
-        <label for="introduction-text">Bemutatkozás</label>
+        <label for="introduction-text">Bemutatkozás<span class="red-star"> *</span></label>
         <textarea id="introduction-text" name="introduction_text" placeholder="Írj magadról pár mondatot!"></textarea>
         <label for="selectedFile">CV feltöltése</label>
         <input type="file" id="selectedFile" style="display: none;" />
         <input class="file-select-button" type="button" value="FILE KIVÁLASZTÁSA" onclick="document.getElementById('selectedFile').click();" />
-        <label class="light-text"><input type="checkbox" name="EULA_check">Elfogadom a <a href="">felhasználási feltételeket</a></label>
+        <label class="light-text EULA"><input type="checkbox" name="EULA_check">Elfogadom a <a href="#">felhasználási feltételeket</a></label>
       </section>
       <section class="flex-row-spcbetween">
         <button class="save-button" name="save-button">MENTÉS</button>
