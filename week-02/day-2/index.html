@@ -19,7 +19,7 @@
               <input type="number" id="date-of-birth" name="date_of_birth" placeholder="pl. 1984">
             </section>
             <section class="flex-column">
-              <span>Nemed</span>
+              <label>Nemed</label>
               <section class="flex-row-spcbetween">
               <label><input type="radio" value="woman" name="sex" selected>Nő</label>
               <label><input type="radio" value="man" name="sex">Férfi</label>
@@ -29,18 +29,18 @@
           <label for="brand-select">Milyen márkákat szeretsz?</label>
           <section class="flex-row-spcbetween">
             <section class="flex-column">
-              <label><input type="checkbox" name="brands[]" value="Aidas">Adidas</label>
-              <label><input type="checkbox" name="brands[]" value="Apple">Apple</label>
-              <label><input type="checkbox" name="brands[]" value="Coca-cola">Coca-cola</label>
-              <label><input type="checkbox" name="brands[]" value="Mazda">Mazda</label>
-              <label><input type="checkbox" name="brands[]" value="Nike">Nike</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Aidas">Adidas</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Apple">Apple</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Coca-cola">Coca-cola</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Mazda">Mazda</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Nike">Nike</label>
             </section>
             <section class="flex-column">
-              <label><input type="checkbox" name="brands[]" value="Opel">Opel</label>
-              <label><input type="checkbox" name="brands[]" value="Ray-Ban">Ray-Ban</label>
-              <label><input type="checkbox" name="brands[]" value="Starbucks">Starbucks</label>
-              <label><input type="checkbox" name="brands[]" value="Tesla">Tesla</label>
-              <label><input type="checkbox" name="brands[]" value="Yahoo">Yahoo</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Opel">Opel</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Ray-Ban">Ray-Ban</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Starbucks">Starbucks</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Tesla">Tesla</label>
+              <label class="light-text two-column"><input type="checkbox" name="brands[]" value="Yahoo">Yahoo</label>
             </section>
           </section>
           <p class="gray-hint">Többet is választhatsz!</p>
@@ -67,13 +67,14 @@
       <section class="introduction">
         <label for="introduction-text">Bemutatkozás</label>
         <textarea id="introduction-text" name="introduction_text" placeholder="Írj magadról pár mondatot!"></textarea>
-        <label for="cv-upload">CV feltöltése</label>
-        <input type="file" id="cv-upload" name="cv_file">
-        <label><input type="checkbox" name="EULA_check">Elfogadom a felhasználási feltételeket</label>
+        <label for="selectedFile">CV feltöltése</label>
+        <input type="file" id="selectedFile" style="display: none;" />
+        <input class="file-select-button" type="button" value="FILE KIVÁLASZTÁSA" onclick="document.getElementById('selectedFile').click();" />
+        <label class="light-text"><input type="checkbox" name="EULA_check">Elfogadom a <a href="">felhasználási feltételeket</a></label>
       </section>
       <section class="flex-row-spcbetween">
-        <button name="save-button">MENTÉS</button>
-        <button name="clear-form-button">ŰRLAP TÖRLÉSE</button>
+        <button class="save-button" name="save-button">MENTÉS</button>
+        <button class="clear-form-button" name="clear-form-button">ŰRLAP TÖRLÉSE</button>
       </section>
     </form>
   </body>

@@ -25,8 +25,97 @@ form {
 .grey-section-header {
   background: #938C97;
   color: white;
+  font-size: 18px;
+}
+
+input {
+  margin: 2px 0 10px 0;
+  border: 1px solid #938c97;
+  color: #938C97;
+  font-size: 14px;
+}
+
+input, .grey-section-header {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.save-button {
+  width: 220px;
+  border: 1px solid;
+  background: #443D5A;
+  color: #DCD6CD;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.clear-form-button {
+  width: 160px;
+  border: 1px solid #938c97;
+  background: #E9E9E9;
+  color: #4A4261;
+  font-size: 14px;
+}
+
+.clear-form-button, .save-button {
+  height: 45px;
+  border-radius: 3px;
+}
+
+.file-select-button {
+  width: 220px;
 }
 
 h1 {
   color: #5D566F;
+  font-size: 24px;
+  font-weight: 100;
+}
+
+label {
+  margin: 5px;
+  color: #453E5B;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.gray-hint {
+  margin: 25px 0;
+  color: #938c97;
+  font-size: 15px;
+}
+
+textarea {
+  padding: 10px;
+  height: 11em; 
+}
+
+.light-text {
+  font-weight: 100;
+}
+
+.two-column {
+  margin: 5px 0 0 0 ;
+  width: 140px;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  margin: 0 8px 0 0;
+  border-radius: 3px;
+  position: relative;
+  top: 5px;
+}
+
+#date-of-birth {
+  width: 64px;
+}
+
+input[type="radio"] {
+  height: 20px;
+  width: 20px;
+  margin: 0 8px 0 0;
+  position: relative;
+  top: 5px;
 }
