@@ -1,11 +1,17 @@
 body {
-  width: 100%;
   margin: auto;
 }
 
+body, main {
+  width: 100%;
+}
+
 header {
-  height: 100px;
   background-color: aqua;
+}
+
+header, footer {
+  height: 100px;
 }
 
 section {
@@ -14,13 +20,15 @@ section {
 }
 
 nav {
-  width: 100px;
   background-color: orange;
+}
+
+nav, aside {
+  width: 100px;
 }
 
 main {
   margin: 0 20px;
-  width: 100%;
   background-color: red;
   position: relative;
 }
@@ -35,11 +43,9 @@ main {
 }
 
 aside {
-  width: 100px;
   background-color: purple;
 }
 
 footer {
-  height: 100px;
   background-color: blue;
 }
