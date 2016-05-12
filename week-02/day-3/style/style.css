@@ -1,0 +1,96 @@
+body {
+  box-sizing: border-box;
+  background: #F6F6F6;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.right-side {
+  justify-content: flex-end;
+}
+
+.spcbetween {
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+}
+
+ol > li {
+  display: table;
+  counter-increment: item;
+  margin-bottom: 0.6em;
+}
+
+ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 0.6em;    
+}
+
+li ol > li {
+  margin: 0;
+}
+
+li ol > li:before {
+  content: counters(item, ".") " ";
+}
+
+aside {
+  width: 175px;
+}
+
+header {
+  height: 80px;
+}
+
+main {
+  border-bottom: 1px solid #A7D7F9;
+  border-left: 1px solid #A7D7F9;
+}
+
+main, header {
+  background: white;
+}
+
+.contents-menu {
+  border: 1px solid darkgrey;
+  width: 125px;
+}
+
+.biography {
+  width: 270px;
+}
+
+.images {
+  width: 230px;
+  padding: 5px;
+}
+
+.biography, .images {
+  float: right;
+}
+
+.biography, .images, .contents-menu {
+  background: #F9F9F9;
+}
+
+footer {
+  height: 150px;
+}
