@@ -11,18 +11,16 @@ body, a, ol, .menu-item, .biography p, .images p {
   margin: 0;
 }
 
-.flex-row {
+.flex-row, .flex-column {
   display: flex;
+}
+
+.flex-row {
   flex-flow: row nowrap;
 }
 
 .flex-column {
-  display: flex;
   flex-flow: column nowrap;
-}
-
-.flex-bottom {
-  justify-content: 
 }
 
 .right-side {
@@ -69,7 +67,7 @@ h3 {
   border-top: 1px solid #aaa;
 }
 
-h3, h5, header, .biography, figure, .images, .references-to-columns {
+h3, h5, header, aside, .biography, figure, .images, .references-to-columns {
   font-size: 12px;
 }
 
@@ -92,7 +90,10 @@ h1, h2, h3, h5 {
 
 blockquote {
   padding-right: 40px;
-  display:table;
+}
+
+blockquote, ol > li {
+  display: table;
 }
 
 blockquote p {
@@ -106,7 +107,6 @@ ol {
 }
 
 ol > li {
-  display: table;
   counter-increment: item;
   margin-bottom: 0.6em;
 }
@@ -128,7 +128,6 @@ li ol > li:before {
 aside {
   padding: 0 22px;
   width: 175px;
-  font-size: 12px;
   line-height: 1.6em;
 }
 
@@ -170,7 +169,6 @@ header {
 .active-tab {
   margin-bottom: -1px;
   border-bottom: 1px solid white;
-  background: #fff;
 }
 
 .search-margin {
@@ -186,7 +184,7 @@ main {
   line-height: 22px;
 }
 
-main, header {
+main, header, .active-tab {
   background: white;
 }
 
@@ -205,6 +203,9 @@ main, header {
 
 .contents-menu p {
   margin: 3px 0 10px 5px;
+}
+
+.contents-menu p, .bio-strong {
   font-weight: bolder;
 }
 
@@ -218,7 +219,6 @@ main, header {
 
 .bio-strong {
   width: 75px;
-  font-weight: bolder;
 }
 
 .centered {
