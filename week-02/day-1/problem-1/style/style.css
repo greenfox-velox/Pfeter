@@ -5,8 +5,10 @@ body {
 }
 
 p{
-  margin: 0;
+  margin: 15px 0;
+  padding-bottom: 15px;
   text-align: justify;
+  border-bottom: 2px solid black;
 } 
 
 .first-paragraph-left-duck {
@@ -17,9 +19,4 @@ p{
 .second-paragraph-right-duck {
   float: right;
   margin: 0 0 30px 20px;
-}
-
-hr {
-  margin: 15px 0;
-  border: 1px solid black;
 }
