@@ -4,8 +4,11 @@ body {
 }
 
 header {
-  height: 100px;
   background-color: aqua;
+}
+
+header, footer {
+  height: 100px;
 }
 
 section {
@@ -15,8 +18,11 @@ section {
 }
 
 nav {
-  width: 100px;
   background-color: orange;
+}
+
+nav, aside {
+  width: 100px;
 }
 
 main {
@@ -35,11 +41,9 @@ main {
 }
 
 aside {
-  width: 100px;
   background-color: purple;
 }
 
 footer {
-  height: 100px;
   background-color: blue;
 }
