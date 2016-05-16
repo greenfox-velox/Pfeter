@@ -130,22 +130,29 @@ li ol > li:before {
 }
 
 aside {
-  padding: 0 22px;
-  width: 175px;
   line-height: 1.6em;
+}
+
+.aside-gradient {
+  width: 175px;
+  background: linear-gradient(to top, #f6f6f6 50%,white 80%);
 }
 
 .wiki-logo {
   width: 135px;
-  margin: 5px auto 20px;
+  margin: 3px 0 20px 21px;
 }
 
 .left-main-menu {
-  padding-left: 6px;
+  padding-left: 28px;
+}
+
+.left-further-menu {
+  padding: 0 22px;
 }
 
 .left-further-menu a {
-  padding-left: 16px;
+  padding-left: 26px;
 }
 
 header {
