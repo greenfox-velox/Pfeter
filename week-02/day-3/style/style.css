@@ -66,9 +66,8 @@ h1, h2 {
 }
 
 h3 {
-  margin: 4px 0 0;
+  margin: 1px 0 0;
   padding-top: 4px;
-  border-top: 1px solid #aaa;
 }
 
 h3, h5, header, aside, .biography, figure, .images, .references-to-columns {
@@ -134,25 +133,35 @@ aside {
 }
 
 .aside-gradient {
-  width: 175px;
+  width: 176px;
   background: linear-gradient(to top, #f6f6f6 50%,white 80%);
 }
 
 .wiki-logo {
   width: 135px;
-  margin: 3px 0 20px 21px;
+  margin: 3px 0 16px 21px;
 }
 
 .left-main-menu {
-  padding-left: 28px;
+  padding-left: 27px;
+  margin-bottom: 4px;
+}
+
+.left-further-menu::before {
+  content:'';
+  height: 1px;
+  width: 155px;
+  position: absolute;
+  background: linear-gradient(to right, rgba(204,204,204,0) 0%,rgba(204,204,204,1) 15%,rgba(204,204,204,1) 50%,rgba(240,240,240,1) 85%,rgba(255,255,255,0) 100%);
 }
 
 .left-further-menu {
   padding: 0 22px;
+  margin-bottom: 4px;
 }
 
 .left-further-menu a {
-  padding-left: 26px;
+  padding-left: 17px;
 }
 
 header {
