@@ -4,6 +4,7 @@ out = 6
 # are the same double the variable
 # called out, if not half it
 if y[0] == y[len(y)-1]:
-    out = out * 2
+    out *= 2
 else:
-    out = out / 2
+    out /= 2
+print(out)
