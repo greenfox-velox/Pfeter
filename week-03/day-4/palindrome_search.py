@@ -1,16 +1,15 @@
 # output = search_palindromes('dog goat dad duck doodle never')
 # print(output) # it prints: ['og go', ' dad ', 'd d', 'dood', 'eve']
 
-def search_palindromes2(input_full_text):
+def search_palindromes(full_txt):
     palindromes = []
-    for first_letter_position in range( 0, len(input_full_text)):
+    for first_pos in range( 0, len(full_txt)):
         possible_palindrome = ''
-        first_letter = input_full_text[first_letter_position]
-        for second_letter_position in range(first_letter_position, len(input_full_text)):
-            second_letter = input_full_text[second_letter_position]
-            if (first_letter == second_letter) and (second_letter_position > first_letter_position + 1):
-                possible_palindrome = input_full_text[first_letter_position: second_letter_position + 1]
-                if possible_palindrome == possible_palindrome[::-1]:
-                    palindromes += [possible_palindrome]
+        first_letter = full_txt[first_pos]
+        for second_pos in range(first_pos, len(full_txt)):
+            second_letter = full_txt[second_pos]
+            if (first_letter == second_letter) and (second_pos > first_pos + 1):
+                if full_txt[first_pos: second_pos + 1] == full_txt[second_pos: first_pos - 1: - 1]:
+                    palindromes += [full_txt[first_pos: second_pos + 1]]
     return(palindromes)
-print(search_palindromes2('dog goat dad duck doodle never'))
+print(search_palindromes('dog goat dad duck doodle never'))
