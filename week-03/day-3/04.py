@@ -3,7 +3,7 @@
 # an other method `get_average`, that returns the average of the
 # grades
 
-class student(object):
+class Student(object):
     def __init__(self):
         self.grades = []
 
@@ -17,11 +17,11 @@ class student(object):
             sum_grades += i
         return(sum_grades / len(self.grades))
 
-Pistike = student()
-Pistike.add_grade(2)
-Pistike.add_grade(4)
-Pistike.add_grade(2)
-Pistike.add_grade(4)
-Pistike.add_grade(2)
-Pistike.add_grade(4)
-print(Pistike.get_average())
+pistike = student()
+pistike.add_grade(2)
+pistike.add_grade(4)
+pistike.add_grade(2)
+pistike.add_grade(4)
+pistike.add_grade(2)
+pistike.add_grade(4)
+print(pistike.get_average())
