@@ -1,5 +1,5 @@
 ae = 'Jozsi'
 # create a function that greets ae
-def great(name):
+def greet(name):
     print('Hello ', name)
-great(ae)
+greet(ae)
