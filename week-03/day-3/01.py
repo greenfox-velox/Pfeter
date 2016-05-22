@@ -7,13 +7,13 @@ class Circle(object):
     def __init__(self, radius):
         self.radius = radius
 
-    def get_circumference(self, circle_radius):
-        circumference = circle_radius * 2 * pi
+    def get_circumference(self):
+        circumference = self.radius * 2 * pi
         return(circumference)
 
-    def get_area(self, circle_radius):
-        area = circle_radius ** 2 * pi
+    def get_area(self):
+        area = self.radius ** 2 * pi
         return(area)
 
 my_circle = Circle(20)
-print(my_circle.get_circumference(my_circle.radius), my_circle.get_area(my_circle.radius))
+print(my_circle.get_circumference(), my_circle.get_area())
