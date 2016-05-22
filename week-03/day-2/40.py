@@ -8,9 +8,9 @@ students = [
 # then returns how many candies are own by students
 # under 10
 def underten(input_list):
-    underage = 0
+    underage_candies = 0
     for i in input_list:
         if i['age'] < 10:
-            underage += 1
-    return(underage)
+            underage_candies += i['candies']
+    return(underage_candies)
 print(underten(students))
