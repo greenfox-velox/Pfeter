@@ -6,7 +6,7 @@
 # hows_goin_mate should return "Arrrr!"
 # "Nothin'" otherwise
 
-class pirate(object):
+class Pirate(object):
     def __init__(self):
         self.rums = 0
 
@@ -19,11 +19,11 @@ class pirate(object):
         else:
             return('Arrrr!')
 
-Captain = pirate()
-Captain.drink_rum()
-# Captain.drink_rum()
-# Captain.drink_rum()
-# Captain.drink_rum()
-Captain.drink_rum()
-Captain.drink_rum()
-print(Captain.hows_goin_mate())
+captain = pirate()
+captain.drink_rum()
+# captain.drink_rum()
+# captain.drink_rum()
+# captain.drink_rum()
+captain.drink_rum()
+captain.drink_rum()
+print(captain.hows_goin_mate())
