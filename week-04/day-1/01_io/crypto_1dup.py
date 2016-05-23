@@ -9,4 +9,5 @@ def decrypt(file_name):
             if (i < len(line) - 1):
                 simple_text += line[i]
         simple_texts += simple_text + '\n'
+    f.close()
     return simple_texts

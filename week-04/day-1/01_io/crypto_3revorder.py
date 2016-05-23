@@ -7,4 +7,5 @@ def decrypt(file_name):
         for i in range(0, len(line.rstrip())):
             simple_text += line.rstrip()[i]
         simple_texts += simple_text + '\n'
+    f.close()
     return simple_texts
