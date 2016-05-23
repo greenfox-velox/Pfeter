@@ -49,7 +49,7 @@ class TestIO(unittest.TestCase):
                          self.load_file_content('texts/zen_of_python.txt'))
 
     def test_crypto_encoded(self):
-        self.assertEqual(crypto_4encoded.decrypt('texts/duplicated_chars.txt'),
+        self.assertEqual(crypto_4encoded.decrypt('texts/encoded_zen_lines.txt'),
                          self.load_file_content('texts/zen_of_python.txt'))
 
     def create_file_width_content(self, file_name, content):
