@@ -3,7 +3,7 @@
 def bubble_sort(input_list):
     container = ''
     for i in range(0, len(input_list)):
-        for u in range(0, len(input_list) - 1):
+        for u in range(0, len(input_list) - i - 1):
             if input_list[u] > input_list[u + 1]:
                 container = input_list[u + 1]
                 input_list[u + 1] = input_list[u]
