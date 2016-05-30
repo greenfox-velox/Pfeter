@@ -33,4 +33,3 @@ def translate(hungarian):
         else:
             teve_out += teve[char]
     return teve_out
-print(translate('alma'))
