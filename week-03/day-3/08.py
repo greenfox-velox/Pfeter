@@ -20,7 +20,7 @@ class Student(Person):
     def add_grade(self, grade):
         self.grades.append(grade)
 
-    def average(self, grades):
+    def average(self):
         sum_grades = 0
         for i in self.grades:
             sum_grades += i
@@ -28,7 +28,7 @@ class Student(Person):
 
     def salute(self):
         self.greet()
-        print(self.average(self.grades))
+        print(self.average())
 
 tibi = Student('Tibi', 'Atya')
 tibi.greet()
