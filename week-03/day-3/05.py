@@ -18,23 +18,18 @@ class Stack(object):
         self.elements += element
 
     def pop(self):
-        elements_size = Stack.size(self)
+        elements_size = self.size()
         self.last_element = self.elements[elements_size - 1]
-        counter = 0
         temporary_list = []
-        for shorter_i in self.elements:
-            if counter < (elements_size - 1):
-                temporary_list += [shorter_i]
-                counter += 1
+        for shorter_i in range(elements_size):
+            if shorter_i < (elements_size - 1):
+                temporary_list += [self.elements[shorter_i]]
         self.elements = temporary_list
         return(self.last_element)
 
 stack_1 = Stack()
 print(stack_1.size())
-stack_1.push(['thing1'])
-stack_1.push(['thing2'])
-stack_1.push(['thing3'])
-stack_1.push(['thing4'])
+stack_1.push(['thing1', 'thing2', 'thing3', 'thing4'])
 print(stack_1.size())
 print(stack_1.pop())
 print(stack_1.size())
