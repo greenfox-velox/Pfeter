@@ -20,8 +20,11 @@ def read_todos(file_name):
 
 def list_todos(file_name):
     todos = read_todos(file_name)
-    for i in range(len(todos)):
-        print(i + 1,'-', todos[i])
+    if len(todos) > 0:
+        for i in range(len(todos)):
+            print(i + 1,'-', todos[i])
+    else:
+        print('No todos for today! :)')
 
 def main():
     if len(sys.argv) == 1:
