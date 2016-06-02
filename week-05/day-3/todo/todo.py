@@ -67,6 +67,16 @@ def remove_todo_controller(file_name):
     else:
         print('Unable to remove: Index is out of bound')
 
+def check_task(file_name):
+    output = read_todos(file_name)
+    output[int(sys.argv[2]) - 1]['is_checked'] = 'True'
+    with open(file_name, 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
+        writer.writerow({'task_string': 'task_string', 'is_checked': 'is_checked'})
+        for i in range(len(output)):
+            writer.writerow(output[i])
+    csvfile.close()
+
 def is_file_missing(file_name):
     if not os.path.exists(file_name):
         f = open(file_name, 'w')
@@ -83,6 +93,8 @@ def main():
             add_new_todo_controller('todos.csv')
         elif sys.argv[1] == '-r':
             remove_todo_controller('todos.csv')
+        elif sys.argv[1] == '-c':
+            check_task('todos.csv')
         else:
             print('Unsupported argument')
             usage_information()
