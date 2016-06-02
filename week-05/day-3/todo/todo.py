@@ -1,4 +1,5 @@
 import sys
+import os
 
 def usage_information():
     print('Python Todo application')
@@ -55,17 +56,24 @@ def remove_controller(file_name):
     else:
         print('Unable to remove: Index is out of bound')
 
+def is_file_missing(file_name):
+    if not os.path.exists(file_name):
+        f = open(file_name, 'w')
+        f.close()
+
 def main():
     if len(sys.argv) == 1:
         usage_information()
-    elif sys.argv[1] == '-l':
-        list_todos('todos.txt')
-    elif sys.argv[1] == '-a':
-        add_new_controller('todos.txt')
-    elif sys.argv[1] == '-r':
-        remove_controller('todos.txt')
     else:
-        print('Unsupported argument')
-        usage_information()
+        is_file_missing('todos.txt')
+        if sys.argv[1] == '-l':
+            list_todos('todos.txt')
+        elif sys.argv[1] == '-a':
+            add_new_controller('todos.txt')
+        elif sys.argv[1] == '-r':
+            remove_controller('todos.txt')
+        else:
+            print('Unsupported argument')
+            usage_information()
 
 main()
