@@ -53,11 +53,14 @@ def add_new_todo_controller(file_name):
 def remove_todo(file_name, todo_to_remove):
     output = read_todos(file_name)
     output.pop(int(todo_to_remove) - 1)
+    write_todos(file_name, output)
+
+def write_todos(file_name, input_todo_list):
     with open(file_name, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
         writer.writerow({'task_string': 'task_string', 'is_checked': 'is_checked'})
-        for i in range(len(output)):
-            writer.writerow(output[i])
+        for i in range(len(input_todo_list)):
+            writer.writerow(input_todo_list[i])
     csvfile.close()
 
 def remove_todo_controller(file_name):
@@ -73,12 +76,7 @@ def remove_todo_controller(file_name):
 def check_task(file_name, todo_to_check):
     output = read_todos(file_name)
     output[todo_to_check - 1]['is_checked'] = 'True'
-    with open(file_name, 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
-        writer.writerow({'task_string': 'task_string', 'is_checked': 'is_checked'})
-        for i in range(len(output)):
-            writer.writerow(output[i])
-    csvfile.close()
+    write_todos(file_name, output)
 
 def check_task_controller(file_name):
     if len(sys.argv) < 3:
@@ -92,8 +90,7 @@ def check_task_controller(file_name):
 
 def is_file_missing(file_name):
     if not os.path.exists(file_name):
-        f = open(file_name, 'w')
-        f.close()
+        write_todos(file_name, [])
 
 def main():
     if len(sys.argv) == 1:
