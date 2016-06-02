@@ -66,5 +66,9 @@ def main():
         add_new_task('todos.txt')
     elif sys.argv[1] == '-r':
         remove_task('todos.txt')
+    else:
+        print('Unsupported argument')
+        usage_information()
+
 
 main()
