@@ -1,5 +1,6 @@
 import sys
 import os
+import csv
 
 def usage_information():
     print('Python Todo application')
@@ -13,26 +14,34 @@ def usage_information():
 
 def read_todos(file_name):
     output = []
-    f = open(file_name)
-    for line in f:
-        output.append(line.rstrip())
-    f.close()
+    with open(file_name) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for line in reader:
+            output.append(line)
+    csvfile.close()
     return output
 
 def list_todos(file_name):
     todos = read_todos(file_name)
     if len(todos) > 0:
         for i in range(len(todos)):
-            print(i + 1,'-', todos[i])
+            todo = ""
+            if todos[i].get('is_checked') == 'True':
+                todo += '[X] '
+            else:
+                todo += '[ ] '
+            todo += todos[i].get('task_string')
+            print(i + 1,'-', todo)
     else:
         print('No todos for today! :)')
 
 def append_todos(file_name, new_todo):
-    f = open(file_name, 'a')
-    f.write(new_todo + '\n')
-    f.close()
+    with open(file_name, 'a') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
+        writer.writerow({'task_string': new_todo, 'is_checked': 'False'})
+    csvfile.close()
 
-def add_new_controller(file_name):
+def add_new_todo_controller(file_name):
     if len(sys.argv) == 3:
         append_todos(file_name, sys.argv[2])
     else:
@@ -41,17 +50,19 @@ def add_new_controller(file_name):
 def remove_todo(file_name, todo_to_remove):
     output = read_todos(file_name)
     output.pop(int(todo_to_remove) - 1)
-    f = open(file_name, 'w')
-    for i in range(len(output)):
-        f.write(output[i] + '\n')
-    f.close()
+    with open(file_name, 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
+        writer.writerow({'task_string': 'task_string', 'is_checked': 'is_checked'})
+        for i in range(len(output)):
+            writer.writerow(output[i])
+    csvfile.close()
 
-def remove_controller(file_name):
+def remove_todo_controller(file_name):
     if len(sys.argv) < 3:
         print('Unable to remove: No index is provided')
     elif not sys.argv[2].isdigit():
         print('Unable to remove: Index is not a number')
-    elif len(read_todos(file_name)) >= int(sys.argv[2]):
+    elif (len(read_todos(file_name)) >= int(sys.argv[2])) and (int(sys.argv[2]) > 0):
         remove_todo(file_name, sys.argv[2])
     else:
         print('Unable to remove: Index is out of bound')
@@ -65,13 +76,13 @@ def main():
     if len(sys.argv) == 1:
         usage_information()
     else:
-        is_file_missing('todos.txt')
+        is_file_missing('todos.csv')
         if sys.argv[1] == '-l':
-            list_todos('todos.txt')
+            list_todos('todos.csv')
         elif sys.argv[1] == '-a':
-            add_new_controller('todos.txt')
+            add_new_todo_controller('todos.csv')
         elif sys.argv[1] == '-r':
-            remove_controller('todos.txt')
+            remove_todo_controller('todos.csv')
         else:
             print('Unsupported argument')
             usage_information()
