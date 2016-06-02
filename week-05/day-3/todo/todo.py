@@ -37,13 +37,25 @@ def add_new_task(file_name):
     else:
         print('Unable to add: No task is provided')
 
-def remove_todos(file_name):
+def remove_todo(file_name, todo_to_remove):
     output = read_todos(file_name)
-    output.pop(int(sys.argv[2]) - 1)
+    output.pop(int(todo_to_remove) - 1)
     f = open(file_name, 'w')
     for i in range(len(output)):
         f.write(output[i] + '\n')
     f.close()
+
+def remove_task(file_name):
+    if sys.argv[2].isdigit():
+        if len(sys.argv) == 3:
+            if len(read_todos(file_name)) >= int(sys.argv[2]):
+                remove_todo(file_name, sys.argv[2])
+            else:
+                print('Unable to remove: Index is out of bound')
+        else:
+            print('Unable to remove: No index is provided')
+    else:
+        print('Unable to remove: Index is not a number')
 
 def main():
     if len(sys.argv) == 1:
@@ -53,6 +65,6 @@ def main():
     elif sys.argv[1] == '-a':
         add_new_task('todos.txt')
     elif sys.argv[1] == '-r':
-        remove_todos('todos.txt')
+        remove_task('todos.txt')
 
 main()
