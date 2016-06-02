@@ -21,19 +21,22 @@ def read_todos(file_name):
     csvfile.close()
     return output
 
-def list_todos(file_name):
+def list_todos_controller(file_name):
     todos = read_todos(file_name)
     if len(todos) > 0:
-        for i in range(len(todos)):
-            todo = ""
-            if todos[i].get('is_checked') == 'True':
-                todo += '[X] '
-            else:
-                todo += '[ ] '
-            todo += todos[i].get('task_string')
-            print(i + 1,'-', todo)
+        print_list_todos(todos)
     else:
         print('No todos for today! :)')
+
+def print_list_todos(todos):
+    for i in range(len(todos)):
+        todo = ""
+        if todos[i].get('is_checked') == 'True':
+            todo += '[X] '
+        else:
+            todo += '[ ] '
+        todo += todos[i].get('task_string')
+        print(i + 1,'-', todo)
 
 def append_todos(file_name, new_todo):
     with open(file_name, 'a') as csvfile:
@@ -98,7 +101,7 @@ def main():
     else:
         is_file_missing('todos.csv')
         if sys.argv[1] == '-l':
-            list_todos('todos.csv')
+            list_todos_controller('todos.csv')
         elif sys.argv[1] == '-a':
             add_new_todo_controller('todos.csv')
         elif sys.argv[1] == '-r':
