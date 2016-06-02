@@ -31,7 +31,7 @@ def append_todos(file_name, new_todo):
     f.write(new_todo + '\n')
     f.close()
 
-def add_new_task(file_name):
+def add_new_controller(file_name):
     if len(sys.argv) == 3:
         append_todos(file_name, sys.argv[2])
     else:
@@ -45,17 +45,15 @@ def remove_todo(file_name, todo_to_remove):
         f.write(output[i] + '\n')
     f.close()
 
-def remove_task(file_name):
-    if sys.argv[2].isdigit():
-        if len(sys.argv) == 3:
-            if len(read_todos(file_name)) >= int(sys.argv[2]):
-                remove_todo(file_name, sys.argv[2])
-            else:
-                print('Unable to remove: Index is out of bound')
-        else:
-            print('Unable to remove: No index is provided')
-    else:
+def remove_controller(file_name):
+    if len(sys.argv) < 3:
+        print('Unable to remove: No index is provided')
+    elif not sys.argv[2].isdigit():
         print('Unable to remove: Index is not a number')
+    elif len(read_todos(file_name)) >= int(sys.argv[2]):
+        remove_todo(file_name, sys.argv[2])
+    else:
+        print('Unable to remove: Index is out of bound')
 
 def main():
     if len(sys.argv) == 1:
@@ -63,12 +61,11 @@ def main():
     elif sys.argv[1] == '-l':
         list_todos('todos.txt')
     elif sys.argv[1] == '-a':
-        add_new_task('todos.txt')
+        add_new_controller('todos.txt')
     elif sys.argv[1] == '-r':
-        remove_task('todos.txt')
+        remove_controller('todos.txt')
     else:
         print('Unsupported argument')
         usage_information()
-
 
 main()
