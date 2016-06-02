@@ -27,7 +27,6 @@ def list_todos(file_name):
         print('No todos for today! :)')
 
 def append_todos(file_name, new_todo):
-    output = []
     f = open(file_name, 'a')
     f.write(new_todo + '\n')
     f.close()
@@ -39,9 +38,11 @@ def add_new_task(file_name):
         print('Unable to add: No task is provided')
 
 def remove_todos(file_name):
-    output = []
-    f = open(file_name, 'a')
-    f.write(new_todo + '\n')
+    output = read_todos(file_name)
+    output.pop(int(sys.argv[2]) - 1)
+    f = open(file_name, 'w')
+    for i in range(len(output)):
+        f.write(output[i] + '\n')
     f.close()
 
 def main():
@@ -51,5 +52,7 @@ def main():
         list_todos('todos.txt')
     elif sys.argv[1] == '-a':
         add_new_task('todos.txt')
+    elif sys.argv[1] == '-r':
+        remove_todos('todos.txt')
 
 main()
