@@ -23,7 +23,7 @@ def read_todos(file_name):
 
 def print_list_todos(todos):
     for i in range(len(todos)):
-        todo = ""
+        todo = ''
         if todos[i].get('is_checked') == 'True':
             todo += '[X] '
         else:
@@ -32,10 +32,9 @@ def print_list_todos(todos):
         print(i + 1,'-', todo)
 
 def append_todos(file_name, new_todo):
-    with open(file_name, 'a') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=['task_string', 'is_checked'])
-        writer.writerow({'task_string': new_todo, 'is_checked': 'False'})
-    csvfile.close()
+    output = read_todos(file_name)
+    output.append({'task_string': new_todo, 'is_checked': 'False'})
+    write_todos(file_name, output)
 
 def remove_todo(file_name, todo_to_remove):
     output = read_todos(file_name)
@@ -59,41 +58,41 @@ def is_file_missing(file_name):
     if not os.path.exists(file_name):
         write_todos(file_name, [])
 
-def main_controller(what_do, what_print, what_provide):
+def main_controller(what_do, what_provide):
     file_name = 'todos.csv'
     is_file_missing(file_name)
-    if what_do == 'list_todos':
+    if what_do == 'list':
         todos = read_todos(file_name)
         if len(todos) > 0:
             print_list_todos(todos)
         else:
             print('No todos for today! :)')
     elif len(sys.argv) < 3:
-        print('Unable to ' + what_print + ': No '+ what_provide + ' is provided')
-    elif what_do == 'add_new_todo':
+        print('Unable to ' + what_do + ': No '+ what_provide + ' is provided')
+    elif what_do == 'add':
         append_todos(file_name, sys.argv[2])
     elif not sys.argv[2].isdigit():
-        print('Unable to ' + what_print + ': Index is not a number')
+        print('Unable to ' + what_do + ': Index is not a number')
     elif (len(read_todos(file_name)) >= int(sys.argv[2])) and (int(sys.argv[2]) > 0):
-        if what_do == 'remove_todo':
+        if what_do == 'remove':
             remove_todo(file_name, int(sys.argv[2]))
-        elif what_do == 'check_task':
+        elif what_do == 'check':
             check_task(file_name, int(sys.argv[2]))
     else:
-        print('Unable to ' + what_print + ': Index is out of bound')
+        print('Unable to ' + what_do + ': Index is out of bound')
 
 def main():
     if len(sys.argv) == 1:
         usage_information()
     else:
         if sys.argv[1] == '-l':
-            main_controller('list_todos','','')
+            main_controller('list','')
         elif sys.argv[1] == '-a':
-            main_controller('add_new_todo', 'add', 'task')
+            main_controller('add', 'task')
         elif sys.argv[1] == '-r':
-            main_controller('remove_todo', 'remove', 'index')
+            main_controller('remove', 'index')
         elif sys.argv[1] == '-c':
-            main_controller('check_task', 'check', 'index')
+            main_controller('check', 'index')
         else:
             print('Unsupported argument')
             usage_information()
