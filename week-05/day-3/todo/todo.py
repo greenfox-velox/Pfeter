@@ -21,13 +21,6 @@ def read_todos(file_name):
     csvfile.close()
     return output
 
-def list_todos_controller(file_name):
-    todos = read_todos(file_name)
-    if len(todos) > 0:
-        print_list_todos(todos)
-    else:
-        print('No todos for today! :)')
-
 def print_list_todos(todos):
     for i in range(len(todos)):
         todo = ""
@@ -44,15 +37,14 @@ def append_todos(file_name, new_todo):
         writer.writerow({'task_string': new_todo, 'is_checked': 'False'})
     csvfile.close()
 
-def add_new_todo_controller(file_name):
-    if len(sys.argv) == 3:
-        append_todos(file_name, sys.argv[2])
-    else:
-        print('Unable to add: No task is provided')
-
 def remove_todo(file_name, todo_to_remove):
     output = read_todos(file_name)
-    output.pop(int(todo_to_remove) - 1)
+    output.pop(todo_to_remove - 1)
+    write_todos(file_name, output)
+
+def check_task(file_name, todo_to_check):
+    output = read_todos(file_name)
+    output[todo_to_check - 1]['is_checked'] = 'True'
     write_todos(file_name, output)
 
 def write_todos(file_name, input_todo_list):
@@ -63,48 +55,45 @@ def write_todos(file_name, input_todo_list):
             writer.writerow(input_todo_list[i])
     csvfile.close()
 
-def remove_todo_controller(file_name):
-    if len(sys.argv) < 3:
-        print('Unable to remove: No index is provided')
-    elif not sys.argv[2].isdigit():
-        print('Unable to remove: Index is not a number')
-    elif (len(read_todos(file_name)) >= int(sys.argv[2])) and (int(sys.argv[2]) > 0):
-        remove_todo(file_name, sys.argv[2])
-    else:
-        print('Unable to remove: Index is out of bound')
-
-def check_task(file_name, todo_to_check):
-    output = read_todos(file_name)
-    output[todo_to_check - 1]['is_checked'] = 'True'
-    write_todos(file_name, output)
-
-def check_task_controller(file_name):
-    if len(sys.argv) < 3:
-        print('Unable to check: No index is provided')
-    elif not sys.argv[2].isdigit():
-        print('Unable to check: Index is not a number')
-    elif (len(read_todos(file_name)) >= int(sys.argv[2])) and (int(sys.argv[2]) > 0):
-        check_task(file_name, int(sys.argv[2]))
-    else:
-        print('Unable to check: Index is out of bound')
-
 def is_file_missing(file_name):
     if not os.path.exists(file_name):
         write_todos(file_name, [])
+
+def main_controller(what_do, what_print, what_provide):
+    file_name = 'todos.csv'
+    is_file_missing(file_name)
+    if what_do == 'list_todos':
+        todos = read_todos(file_name)
+        if len(todos) > 0:
+            print_list_todos(todos)
+        else:
+            print('No todos for today! :)')
+    elif len(sys.argv) < 3:
+        print('Unable to ' + what_print + ': No '+ what_provide + ' is provided')
+    elif what_do == 'add_new_todo':
+        append_todos(file_name, sys.argv[2])
+    elif not sys.argv[2].isdigit():
+        print('Unable to ' + what_print + ': Index is not a number')
+    elif (len(read_todos(file_name)) >= int(sys.argv[2])) and (int(sys.argv[2]) > 0):
+        if what_do == 'remove_todo':
+            remove_todo(file_name, int(sys.argv[2]))
+        elif what_do == 'check_task':
+            check_task(file_name, int(sys.argv[2]))
+    else:
+        print('Unable to ' + what_print + ': Index is out of bound')
 
 def main():
     if len(sys.argv) == 1:
         usage_information()
     else:
-        is_file_missing('todos.csv')
         if sys.argv[1] == '-l':
-            list_todos_controller('todos.csv')
+            main_controller('list_todos','','')
         elif sys.argv[1] == '-a':
-            add_new_todo_controller('todos.csv')
+            main_controller('add_new_todo', 'add', 'task')
         elif sys.argv[1] == '-r':
-            remove_todo_controller('todos.csv')
+            main_controller('remove_todo', 'remove', 'index')
         elif sys.argv[1] == '-c':
-            check_task_controller('todos.csv')
+            main_controller('check_task', 'check', 'index')
         else:
             print('Unsupported argument')
             usage_information()
