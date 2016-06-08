@@ -1,4 +1,5 @@
 from tkinter import *
+from random import randint
 
 map = [
 [0,0,0,1,0,1,0,0,0,0],
@@ -17,21 +18,43 @@ map = [
 board_width = 10
 board_height = 11
 
+def first_map():
+    tiles = []
+    for i in range(board_height):
+        for j in range(board_width):
+            if map[i][j] == 0:
+                tiles.append(Tile(j, i, 'floor', True))
+            else:
+                tiles.append(Tile(j, i, 'wall', False))
+    return tiles
+
+def hero_starting_stats():
+    hp = 20 + 3 * randint(1,6)
+    dp = 2 * randint(1,6)
+    sp = 5 + randint(1,6)
+    return Hero(0, 0, 1, hp, dp, sp)
+
+def skeleton_starting_stats(x, y, has_key):
+    hp = 2 * randint(1,6)
+    dp = 1 / 2 * randint(1,6)
+    sp = randint(1,6)
+    return Skeleton(x, y, 1, hp, dp, sp, has_key)
+
+def boss_starting_stats(x,y):
+    hp = 2 * randint(1,6) + randint(1,6)
+    dp = 1 / 2 * randint(1,6) + randint(1,6) / 2
+    sp = randint(1,6) + 1
+    return Boss(x, y, 1, hp, dp, sp)
+
 class GameBoard(object):
     def __init__(self):
-        self.tiles = []
-        for i in range(board_height):
-            for j in range(board_width):
-                if map[i][j] == 0:
-                    self.tiles.append(Tile(j, i, 'floor', True))
-                else:
-                    self.tiles.append(Tile(j, i, 'wall', False))
-        self.hero = Hero(0, 0, 1, 10, 8, 6)
+        self.tiles = first_map()
+        self.hero = hero_starting_stats()
         self.enemies = []
-        self.enemies.append(Skeleton(4, 3, 1, 10, 8, 6, False))
-        self.enemies.append(Skeleton(4, 8, 1, 10, 8, 6, True))
-        self.enemies.append(Skeleton(7, 8, 1, 10, 8, 6, False))
-        self.enemies.append(Boss(6, 3, 1, 10, 8, 6))
+        self.enemies.append(skeleton_starting_stats(4, 3, False))
+        self.enemies.append(skeleton_starting_stats(4, 8, True))
+        self.enemies.append(skeleton_starting_stats(7, 8, False))
+        self.enemies.append(boss_starting_stats(6,3))
 
     def screen_draw(self, canvas):
         canvas.delete('all')
