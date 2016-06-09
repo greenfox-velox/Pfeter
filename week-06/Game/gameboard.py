@@ -28,33 +28,15 @@ def first_map():
                 tiles.append(Tile(j, i, 'wall', False))
     return tiles
 
-def hero_starting_stats():
-    hp = 20 + 3 * randint(1,6)
-    dp = 2 * randint(1,6)
-    sp = 5 + randint(1,6)
-    return Hero(0, 0, 1, hp, dp, sp)
-
-def skeleton_starting_stats(x, y, has_key):
-    hp = 2 * randint(1,6)
-    dp = 1 / 2 * randint(1,6)
-    sp = randint(1,6)
-    return Skeleton(x, y, 1, hp, dp, sp, has_key)
-
-def boss_starting_stats(x,y):
-    hp = 2 * randint(1,6) + randint(1,6)
-    dp = 1 / 2 * randint(1,6) + randint(1,6) / 2
-    sp = randint(1,6) + 1
-    return Boss(x, y, 1, hp, dp, sp)
-
 class GameBoard(object):
     def __init__(self):
         self.tiles = first_map()
-        self.hero = hero_starting_stats()
+        self.hero = Hero(0, 0)
         self.enemies = []
-        self.enemies.append(skeleton_starting_stats(4, 3, False))
-        self.enemies.append(skeleton_starting_stats(4, 8, True))
-        self.enemies.append(skeleton_starting_stats(7, 8, False))
-        self.enemies.append(boss_starting_stats(6,3))
+        self.enemies.append(Skeleton(4, 3, False))
+        self.enemies.append(Skeleton(4, 8, True))
+        self.enemies.append(Skeleton(7, 8, False))
+        self.enemies.append(Boss(6,3))
 
     def screen_draw(self, canvas):
         canvas.delete('all')
@@ -104,23 +86,20 @@ class Tile(Drawable):
             self.image = PhotoImage(file='wall.png')
 
 class Character(object):
-    def __init__(self, x, y, level, hp, dp, sp):
-        self.x = x
-        self.y = y
-        self.level = level
-        self.hp = hp
-        self.dp = dp
-        self.sp = sp
-
     def stat(self):
         return (self.name + ' (Level ' + str(self.level) + ') HP: ' + str(self.hp) + '/' + str(self.full_hp) + ' | DP: ' + str(self.dp) +' | SP: ' + str(self.sp))
 
 class Hero(Drawable, Character):
-    def __init__(self, x, y, level, hp, dp, sp):
-        Character.__init__(self, x, y, level, hp, dp, sp)
+    def __init__(self, x, y):
         self.image = PhotoImage(file='hero-down.png')
         self.name = 'Hero'
-        self.full_hp = hp
+        self.hp = 20 + 3 * randint(1,6)
+        self.full_hp = self.hp
+        self.dp = 2 * randint(1,6)
+        self.sp = 5 + randint(1,6)
+        self.level = 1
+        self.x = x
+        self.y = y
 
     def move(self, direction):
         if direction == 'down':
@@ -137,19 +116,29 @@ class Hero(Drawable, Character):
             self.x += 1
 
 class Skeleton(Drawable, Character):
-    def __init__(self, x, y, level, hp, dp, sp, has_the_key):
-        Character.__init__(self, x, y, level, hp, dp, sp)
+    def __init__(self, x, y, has_the_key):
         self.image = PhotoImage(file='skeleton.png')
         if has_the_key == True:
             self.has_the_key = True
         else:
             self.has_the_key = False
         self.name = 'Skeleton'
-        self.full_hp = hp
+        self.hp = 2 * randint(1,6)
+        self.full_hp = self.hp
+        self.dp = 1 / 2 * randint(1,6)
+        self.sp = randint(1,6)
+        self.level = 1
+        self.x = x
+        self.y = y
 
 class Boss(Drawable, Character):
-    def __init__(self, x, y, level, hp, dp, sp):
-        Character.__init__(self, x, y, level, hp, dp, sp)
+    def __init__(self, x, y):
         self.image = PhotoImage(file='boss.png')
         self.name = 'Boss'
-        self.full_hp = hp
+        self.hp = 2 * randint(1,6) + randint(1,6)
+        self.full_hp = self.hp
+        self.dp = 1 / 2 * randint(1,6) + randint(1,6) / 2
+        self.sp = randint(1,6) + 1
+        self.level = 1
+        self.x = x
+        self.y = y
