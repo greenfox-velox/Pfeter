@@ -46,9 +46,8 @@ class GameBoard(object):
             self.enemies[y].draw(canvas)
         self.hero.draw(canvas)
         self.hero.stat_print(canvas, 1)
-        for i in self.enemies:
-            if self.hero.x == i.x and self.hero.y == i.y:
-                i.stat_print(canvas, 2)
+        if self.overlap_a_character() != 0:
+            self.overlap_a_character().stat_print(canvas, 2)
 
     def keyboard_event_controller(self, event, canvas):
         if event == 39 and self.can_move(self.hero, 0, 1):
@@ -59,15 +58,28 @@ class GameBoard(object):
             self.hero.move('left')
         if event == 40 and self.can_move(self.hero, 1, 0):
             self.hero.move('right')
+        if event == 65 and self.overlap_a_character() != 0:
+            self.hero.strike(self.overlap_a_character())
+            self.overlap_a_character().strike(self.hero)
         self.screen_draw(canvas)
+
+    def overlap_a_character(self):
+        for overlapped_character in self.enemies:
+            if self.hero.x == overlapped_character.x and self.hero.y == overlapped_character.y:
+                return(overlapped_character)
+        return 0
 
     def can_move(self, who, direction_x, direction_y):
         for i in self.tiles:
-            if i.x == (who.x + direction_x) and i.y == (who.y + direction_y) and i.accessible == True:
+            if i.x == (who.x + direction_x) and i.y == (who.y + direction_y) and i.accessible:
                 return True
         return False
 
 class Drawable(object):
+    def __init__(self, x, y):
+            self.x = x
+            self.y = y
+
     def draw(self, canvas):
         canvas.create_image(self.x * 72, self.y * 72, image = self.image, anchor = NW)
 
@@ -76,8 +88,7 @@ class Drawable(object):
 
 class Tile(Drawable):
     def __init__(self, x, y, type_of_tile, accessible):
-        self.x = x
-        self.y = y
+        Drawable.__init__(self, x, y)
         self.type_of_tile = type_of_tile
         self.accessible = accessible
         if type_of_tile == 'floor':
@@ -89,8 +100,14 @@ class Character(object):
     def stat(self):
         return (self.name + ' (Level ' + str(self.level) + ') HP: ' + str(self.hp) + '/' + str(self.full_hp) + ' | DP: ' + str(self.dp) +' | SP: ' + str(self.sp))
 
+    def strike(self, enemy):
+        sv = self.sp + randint(1,6) * 2
+        if sv > enemy.dp:
+            enemy.hp -= sv - enemy.dp
+
 class Hero(Drawable, Character):
     def __init__(self, x, y):
+        Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='hero-down.png')
         self.name = 'Hero'
         self.hp = 20 + 3 * randint(1,6)
@@ -98,8 +115,6 @@ class Hero(Drawable, Character):
         self.dp = 2 * randint(1,6)
         self.sp = 5 + randint(1,6)
         self.level = 1
-        self.x = x
-        self.y = y
 
     def move(self, direction):
         if direction == 'down':
@@ -117,6 +132,7 @@ class Hero(Drawable, Character):
 
 class Skeleton(Drawable, Character):
     def __init__(self, x, y, has_the_key):
+        Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='skeleton.png')
         if has_the_key == True:
             self.has_the_key = True
@@ -128,11 +144,10 @@ class Skeleton(Drawable, Character):
         self.dp = 1 / 2 * randint(1,6)
         self.sp = randint(1,6)
         self.level = 1
-        self.x = x
-        self.y = y
 
 class Boss(Drawable, Character):
     def __init__(self, x, y):
+        Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='boss.png')
         self.name = 'Boss'
         self.hp = 2 * randint(1,6) + randint(1,6)
@@ -140,5 +155,3 @@ class Boss(Drawable, Character):
         self.dp = 1 / 2 * randint(1,6) + randint(1,6) / 2
         self.sp = randint(1,6) + 1
         self.level = 1
-        self.x = x
-        self.y = y
