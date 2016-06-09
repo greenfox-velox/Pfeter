@@ -33,9 +33,9 @@ class GameBoard(object):
         self.tiles = first_map()
         self.hero = Hero(0, 0)
         self.enemies = []
-        self.enemies.append(Skeleton(4, 3, False))
+        self.enemies.append(Skeleton(4, 3))
         self.enemies.append(Skeleton(4, 8, True))
-        self.enemies.append(Skeleton(7, 8, False))
+        self.enemies.append(Skeleton(7, 8))
         self.enemies.append(Boss(6,3))
 
     def screen_draw(self, canvas):
@@ -75,6 +75,12 @@ class GameBoard(object):
                 return True
         return False
 
+class RollStats(object):
+    def roll_stats(self, hp_base = 0, hpc = 1, dp_base = 0, dpc = 1, sp_base = 0, spc = 1):
+        self.hp = hp_base + hpc * randint(1,6)
+        self.dp = dp_base + dpc * randint(1,6)
+        self.sp = sp_base + spc * randint(1,6)
+
 class Drawable(object):
     def __init__(self, x, y):
             self.x = x
@@ -112,11 +118,9 @@ class Hero(Drawable, Character):
         Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='hero-down.png')
         self.name = 'Hero'
-        self.hp = 20 + 3 * randint(1,6)
-        self.full_hp = self.hp
-        self.dp = 2 * randint(1,6)
-        self.sp = 5 + randint(1,6)
         self.level = 1
+        RollStats.roll_stats(self, hp_base = 20, hpc = 3, dpc = 2, sp_base = 5)
+        self.full_hp = self.hp
 
     def move(self, direction):
         if direction == 'down':
@@ -133,7 +137,7 @@ class Hero(Drawable, Character):
             self.x += 1
 
 class Skeleton(Drawable, Character):
-    def __init__(self, x, y, has_the_key):
+    def __init__(self, x, y, has_the_key = False):
         Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='skeleton.png')
         if has_the_key == True:
@@ -141,19 +145,15 @@ class Skeleton(Drawable, Character):
         else:
             self.has_the_key = False
         self.name = 'Skeleton'
-        self.hp = 2 * randint(1,6)
-        self.full_hp = self.hp
-        self.dp = 1 / 2 * randint(1,6)
-        self.sp = randint(1,6)
         self.level = 1
+        RollStats.roll_stats(self, hpc = 2, dpc = 1/2)
+        self.full_hp = self.hp
 
 class Boss(Drawable, Character):
     def __init__(self, x, y):
         Drawable.__init__(self, x, y)
         self.image = PhotoImage(file='boss.png')
         self.name = 'Boss'
-        self.hp = 2 * randint(1,6) + randint(1,6)
-        self.full_hp = self.hp
-        self.dp = 1 / 2 * randint(1,6) + randint(1,6) / 2
-        self.sp = randint(1,6) + 1
         self.level = 1
+        RollStats.roll_stats(self, hpc = 3, sp_base = 1)
+        self.full_hp = self.hp
