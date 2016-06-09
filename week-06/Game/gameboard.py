@@ -23,9 +23,9 @@ def first_map():
     for i in range(board_height):
         for j in range(board_width):
             if map[i][j] == 0:
-                tiles.append(Tile(j, i, 'floor', True))
+                tiles.append(FloorTile(j, i))
             else:
-                tiles.append(Tile(j, i, 'wall', False))
+                tiles.append(WallTile(j, i))
     return tiles
 
 class GameBoard(object):
@@ -86,15 +86,17 @@ class Drawable(object):
     def stat_print(self, canvas, wich_row):
         canvas.create_text(board_width * 72 / 2, board_height * 72 + wich_row * 20, text = self.stat())
 
-class Tile(Drawable):
-    def __init__(self, x, y, type_of_tile, accessible):
+class WallTile(Drawable):
+    def __init__(self, x, y):
         Drawable.__init__(self, x, y)
-        self.type_of_tile = type_of_tile
-        self.accessible = accessible
-        if type_of_tile == 'floor':
-            self.image = PhotoImage(file='floor.png')
-        elif type_of_tile == 'wall':
-            self.image = PhotoImage(file='wall.png')
+        self.accessible = False
+        self.image = PhotoImage(file='wall.png')
+
+class FloorTile(Drawable):
+    def __init__(self, x, y):
+        Drawable.__init__(self, x, y)
+        self.accessible = True
+        self.image = PhotoImage(file='floor.png')
 
 class Character(object):
     def stat(self):
