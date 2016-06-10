@@ -76,10 +76,10 @@ class GameBoard(object):
         return False
 
 class RollStats(object):
-    def roll_stats(self, hp_base = 0, hpc = 1, dp_base = 0, dpc = 1, sp_base = 0, spc = 1):
-        self.hp = hp_base + self.dice_6.roll(hpc)
-        self.dp = dp_base + self.dice_6.roll(dpc)
-        self.sp = sp_base + self.dice_6.roll(spc)
+    def roll_stats(self, hp_base = 0, hpc = 1, dp_base = 0, dpc = 1, sp_base = 0, spc = 1, level = 1):
+        self.hp = hp_base + self.dice_6.roll(hpc) * level
+        self.dp = dp_base + self.dice_6.roll(dpc) * level / 2
+        self.sp = sp_base + self.dice_6.roll(spc) * level
 
 class Dice(object):
     def roll(self, number_of_rolls):
@@ -148,23 +148,23 @@ class Hero(Drawable, Character):
             self.x += 1
 
 class Skeleton(Drawable, Character):
-    def __init__(self, x, y, has_the_key = False):
+    def __init__(self, x, y, has_the_key = False, level = 1):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='skeleton.png')
         if has_the_key:
             self.has_the_key = True
         self.name = 'Skeleton'
-        self.level = 1
-        RollStats.roll_stats(self, hpc = 2, dpc = 1/2)
+        self.level = level
+        RollStats.roll_stats(self, hpc = 2, dpc = 1/2, level = self.level)
         self.full_hp = self.hp
 
 class Boss(Drawable, Character):
-    def __init__(self, x, y):
+    def __init__(self, x, y, level = 1):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='boss.png')
         self.name = 'Boss'
-        self.level = 1
-        RollStats.roll_stats(self, hpc = 3, sp_base = 1)
+        self.level = level
+        RollStats.roll_stats(self, hp_base = self.dice_6.roll(1), hpc = 2, dp_base = self.dice_6.roll(1)/2, dpc = self.level/2, sp_base = self.level, spc = self.level, level = self.level)
         self.full_hp = self.hp
