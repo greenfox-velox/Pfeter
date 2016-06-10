@@ -96,6 +96,8 @@ class Drawable(object):
     def draw(self, canvas):
         canvas.create_image(self.x * 72, self.y * 72, image = self.image, anchor = NW)
 
+
+class StatPrint(object):
     def stat_print(self, canvas, which_row):
         canvas.create_text(board_width * 72 / 2, board_height * 72 + which_row * 20, text = self.stat())
 
@@ -111,7 +113,7 @@ class FloorTile(Drawable):
         self.accessible = True
         self.image = PhotoImage(file='floor.png')
 
-class Character(object):
+class Character(StatPrint):
     def __init__(self):
         self.dice_6 = Dice()
 
