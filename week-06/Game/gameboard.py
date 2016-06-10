@@ -59,8 +59,7 @@ class GameBoard(object):
         if event == 40 and self.can_move(self.hero, 1, 0):
             self.hero.move('right')
         if event == 65 and self.overlap_a_character() != 0:
-            self.hero.strike(self.overlap_a_character())
-            self.overlap_a_character().strike(self.hero)
+            self.battle(self.hero, self.overlap_a_character())
         self.screen_draw(canvas)
 
     def overlap_a_character(self):
@@ -68,6 +67,10 @@ class GameBoard(object):
             if self.hero.x == overlapped_character.x and self.hero.y == overlapped_character.y:
                 return(overlapped_character)
         return 0
+
+    def battle(self, hero, enemy):
+        hero.strike(enemy)
+        enemy.strike(hero)
 
     def can_move(self, who, direction_x, direction_y):
         for i in self.tiles:
