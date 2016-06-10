@@ -152,7 +152,7 @@ class Skeleton(Drawable, Character):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='skeleton.png')
-        if has_the_key == True:
+        if has_the_key:
             self.has_the_key = True
         self.name = 'Skeleton'
         self.level = 1
