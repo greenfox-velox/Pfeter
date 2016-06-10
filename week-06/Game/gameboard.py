@@ -77,9 +77,16 @@ class GameBoard(object):
 
 class RollStats(object):
     def roll_stats(self, hp_base = 0, hpc = 1, dp_base = 0, dpc = 1, sp_base = 0, spc = 1):
-        self.hp = hp_base + hpc * randint(1,6)
-        self.dp = dp_base + dpc * randint(1,6)
-        self.sp = sp_base + spc * randint(1,6)
+        self.hp = hp_base + self.dice_6.roll(hpc)
+        self.dp = dp_base + self.dice_6.roll(dpc)
+        self.sp = sp_base + self.dice_6.roll(spc)
+
+class Dice(object):
+    def roll(self, number_of_rolls):
+        if number_of_rolls <= 1:
+            return randint(1,6)
+        else:
+            return randint(1,6) + self.roll(number_of_rolls - 1)
 
 class Drawable(object):
     def __init__(self, x, y):
@@ -89,8 +96,8 @@ class Drawable(object):
     def draw(self, canvas):
         canvas.create_image(self.x * 72, self.y * 72, image = self.image, anchor = NW)
 
-    def stat_print(self, canvas, wich_row):
-        canvas.create_text(board_width * 72 / 2, board_height * 72 + wich_row * 20, text = self.stat())
+    def stat_print(self, canvas, which_row):
+        canvas.create_text(board_width * 72 / 2, board_height * 72 + which_row * 20, text = self.stat())
 
 class WallTile(Drawable):
     def __init__(self, x, y):
@@ -105,17 +112,21 @@ class FloorTile(Drawable):
         self.image = PhotoImage(file='floor.png')
 
 class Character(object):
+    def __init__(self):
+        self.dice_6 = Dice()
+
     def stat(self):
         return (self.name + ' (Level ' + str(self.level) + ') HP: ' + str(self.hp) + '/' + str(self.full_hp) + ' | DP: ' + str(self.dp) +' | SP: ' + str(self.sp))
 
     def strike(self, enemy):
-        sv = self.sp + randint(1,6) * 2
+        sv = self.sp + self.dice_6.roll(2)
         if sv > enemy.dp:
             enemy.hp -= sv - enemy.dp
 
 class Hero(Drawable, Character):
     def __init__(self, x, y):
         Drawable.__init__(self, x, y)
+        Character.__init__(self)
         self.image = PhotoImage(file='hero-down.png')
         self.name = 'Hero'
         self.level = 1
@@ -139,11 +150,10 @@ class Hero(Drawable, Character):
 class Skeleton(Drawable, Character):
     def __init__(self, x, y, has_the_key = False):
         Drawable.__init__(self, x, y)
+        Character.__init__(self)
         self.image = PhotoImage(file='skeleton.png')
         if has_the_key == True:
             self.has_the_key = True
-        else:
-            self.has_the_key = False
         self.name = 'Skeleton'
         self.level = 1
         RollStats.roll_stats(self, hpc = 2, dpc = 1/2)
@@ -152,6 +162,7 @@ class Skeleton(Drawable, Character):
 class Boss(Drawable, Character):
     def __init__(self, x, y):
         Drawable.__init__(self, x, y)
+        Character.__init__(self)
         self.image = PhotoImage(file='boss.png')
         self.name = 'Boss'
         self.level = 1
