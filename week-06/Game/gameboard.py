@@ -6,8 +6,8 @@ class GameMap(object):
         self.map_height = 11
         self.map_width = 10
 
-    def tutorial(self):
-        tutorial_map = [
+    def tutorial_tiles(self):
+        first_map = [
         [0,0,0,1,0,1,0,0,0,0],
         [0,0,0,1,0,1,0,1,1,0],
         [0,1,1,1,0,1,0,1,1,0],
@@ -20,28 +20,39 @@ class GameMap(object):
         [0,0,0,1,0,1,1,0,1,0],
         [0,1,0,1,0,1,0,0,0,0]
         ]
-        self.map_height = len(tutorial_map)
-        self.map_width = len(tutorial_map[0])
+        self.map_height = len(first_map)
+        self.map_width = len(first_map[0])
         tiles = []
         for i in range(self.map_height):
             for j in range(self.map_width):
-                if tutorial_map[i][j] == 0:
+                if first_map[i][j] == 0:
                     tiles.append(FloorTile(j, i))
                 else:
                     tiles.append(WallTile(j, i))
         return tiles
 
+    def tutorial_enemies(self):
+        first_enemies = [
+        ['skeleton', 4, 3, False],
+        ['skeleton', 4, 8, True],
+        ['skeleton', 7, 8, False],
+        ['boss', 6, 3]
+        ]
+        enemies = []
+        for i in range(len(first_enemies)):
+            if first_enemies[i][0] ==  'skeleton':
+                enemies.append(Skeleton(first_enemies[i][1], first_enemies[i][2], first_enemies[i][3]))
+            elif first_enemies[i][0] == 'boss':
+                enemies.append(Boss(first_enemies[i][1], first_enemies[i][2]))
+        return enemies
+
 class GameBoard(object):
     def __init__(self):
         self.game_map = GameMap()
         self.map_size = [self.game_map.map_width, self.game_map.map_height]
-        self.tiles = self.game_map.tutorial()
+        self.tiles = self.game_map.tutorial_tiles()
+        self.enemies = self.game_map.tutorial_enemies()
         self.hero = Hero(0, 0)
-        self.enemies = []
-        self.enemies.append(Skeleton(4, 3))
-        self.enemies.append(Skeleton(4, 8, True))
-        self.enemies.append(Skeleton(7, 8))
-        self.enemies.append(Boss(6,3))
 
     def screen_draw(self, canvas):
         canvas.delete('all')
@@ -157,12 +168,11 @@ class Hero(Drawable, Character):
             self.x += 1
 
 class Skeleton(Drawable, Character):
-    def __init__(self, x, y, has_the_key = False, level = 1):
+    def __init__(self, x, y, has_the_key, level = 1):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='skeleton.png')
-        if has_the_key:
-            self.has_the_key = True
+        self.has_the_key = has_the_key
         self.name = 'Skeleton'
         self.level = level
         RollStats.roll_stats(self, hpc = 2, dpc = 1/2, level = self.level)
