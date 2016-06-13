@@ -1,36 +1,41 @@
 from tkinter import *
 from random import randint
 
-map = [
-[0,0,0,1,0,1,0,0,0,0],
-[0,0,0,1,0,1,0,1,1,0],
-[0,1,1,1,0,1,0,1,1,0],
-[0,0,0,0,0,1,0,0,0,0],
-[1,1,1,1,0,1,1,1,1,0],
-[0,1,0,1,0,0,0,0,1,0],
-[0,1,0,1,0,1,1,0,1,0],
-[0,0,0,0,0,1,1,0,1,0],
-[0,1,1,1,0,0,0,0,1,0],
-[0,0,0,1,0,1,1,0,1,0],
-[0,1,0,1,0,1,0,0,0,0]
-]
+class GameMap(object):
+    def __init__(self):
+        self.map_height = 11
+        self.map_width = 10
 
-board_width = 10
-board_height = 11
-
-def first_map():
-    tiles = []
-    for i in range(board_height):
-        for j in range(board_width):
-            if map[i][j] == 0:
-                tiles.append(FloorTile(j, i))
-            else:
-                tiles.append(WallTile(j, i))
-    return tiles
+    def tutorial(self):
+        tutorial_map = [
+        [0,0,0,1,0,1,0,0,0,0],
+        [0,0,0,1,0,1,0,1,1,0],
+        [0,1,1,1,0,1,0,1,1,0],
+        [0,0,0,0,0,1,0,0,0,0],
+        [1,1,1,1,0,1,1,1,1,0],
+        [0,1,0,1,0,0,0,0,1,0],
+        [0,1,0,1,0,1,1,0,1,0],
+        [0,0,0,0,0,1,1,0,1,0],
+        [0,1,1,1,0,0,0,0,1,0],
+        [0,0,0,1,0,1,1,0,1,0],
+        [0,1,0,1,0,1,0,0,0,0]
+        ]
+        self.map_height = len(tutorial_map)
+        self.map_width = len(tutorial_map[0])
+        tiles = []
+        for i in range(self.map_height):
+            for j in range(self.map_width):
+                if tutorial_map[i][j] == 0:
+                    tiles.append(FloorTile(j, i))
+                else:
+                    tiles.append(WallTile(j, i))
+        return tiles
 
 class GameBoard(object):
     def __init__(self):
-        self.tiles = first_map()
+        self.game_map = GameMap()
+        self.map_size = [self.game_map.map_width, self.game_map.map_height]
+        self.tiles = self.game_map.tutorial()
         self.hero = Hero(0, 0)
         self.enemies = []
         self.enemies.append(Skeleton(4, 3))
@@ -45,9 +50,9 @@ class GameBoard(object):
         for y in range(len(self.enemies)):
             self.enemies[y].draw(canvas)
         self.hero.draw(canvas)
-        self.hero.stat_print(canvas, 1)
+        self.hero.stat_print(canvas, 1, self.map_size)
         if self.overlap_a_character() != 0:
-            self.overlap_a_character().stat_print(canvas, 2)
+            self.overlap_a_character().stat_print(canvas, 2, self.map_size)
 
     def keyboard_event_controller(self, event, canvas):
         if event == 39 and self.can_move(self.hero, 0, 1):
@@ -99,10 +104,9 @@ class Drawable(object):
     def draw(self, canvas):
         canvas.create_image(self.x * 72, self.y * 72, image = self.image, anchor = NW)
 
-
 class StatPrint(object):
-    def stat_print(self, canvas, which_row):
-        canvas.create_text(board_width * 72 / 2, board_height * 72 + which_row * 20, text = self.stat())
+    def stat_print(self, canvas, which_row, map_size):
+        canvas.create_text(map_size[0] * 72 / 2, map_size[1] * 72 + which_row * 20, text = self.stat())
 
 class WallTile(Drawable):
     def __init__(self, x, y):
