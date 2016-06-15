@@ -1,4 +1,5 @@
 from drawables import *
+from characters import *
 
 class GameMap(object):
     def __init__(self):
