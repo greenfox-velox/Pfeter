@@ -1,5 +1,6 @@
 from tkinter import *
-from drawables import *
+from stats import *
+from drawables import Drawable
 
 class Character(StatPrint):
     def __init__(self):
