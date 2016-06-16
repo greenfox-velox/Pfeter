@@ -19,6 +19,7 @@ class Hero(Drawable, Character):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='hero-down.png')
+        self.has_the_key = False
         self.name = 'Hero'
         self.level = 1
         RollStats.roll_stats(self, hp_base = 20, hpc = 3, dpc = 2, sp_base = 5)

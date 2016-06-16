@@ -42,7 +42,10 @@ class GameBoard(object):
         hero.strike(enemy)
         if enemy.hp <= 0:
             self.enemies.remove(enemy)
-        enemy.strike(hero)
+            if enemy.name == 'Skeleton' and enemy.has_the_key:
+                self.hero.has_the_key = True
+        else:
+            enemy.strike(hero)
 
     def can_move(self, who, direction_x, direction_y):
         for i in self.tiles:
