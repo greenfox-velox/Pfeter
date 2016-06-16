@@ -46,6 +46,9 @@ class GameBoard(object):
                 self.hero.has_the_key = True
         else:
             enemy.strike(hero)
+            if self.hero.hp <= 0:
+                self.enemies.clear()
+                self.tiles.clear()
 
     def can_move(self, who, direction_x, direction_y):
         for i in self.tiles:
