@@ -40,6 +40,8 @@ class GameBoard(object):
 
     def battle(self, hero, enemy):
         hero.strike(enemy)
+        if enemy.hp <= 0:
+            self.enemies.remove(enemy)
         enemy.strike(hero)
 
     def can_move(self, who, direction_x, direction_y):
