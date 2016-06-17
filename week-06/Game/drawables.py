@@ -12,10 +12,10 @@ class WallTile(Drawable):
     def __init__(self, x, y):
         Drawable.__init__(self, x, y)
         self.accessible = False
-        self.image = PhotoImage(file='wall.png')
+        self.image = PhotoImage(file='images/wall.png')
 
 class FloorTile(Drawable):
     def __init__(self, x, y):
         Drawable.__init__(self, x, y)
         self.accessible = True
-        self.image = PhotoImage(file='floor.png')
+        self.image = PhotoImage(file='images/floor.png')
