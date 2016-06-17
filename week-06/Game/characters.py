@@ -39,6 +39,12 @@ class Hero(Drawable, Character):
             self.image = PhotoImage(file='hero-right.png')
             self.x += 1
 
+    def leveling(self):
+        self.level += 1
+        self.full_hp += self.dice_6.roll(1)
+        self.dp += self.dice_6.roll(1)
+        self.sp += self.dice_6.roll(1)
+
 class Skeleton(Drawable, Character):
     def __init__(self, x, y, has_the_key, level = 1):
         Drawable.__init__(self, x, y)

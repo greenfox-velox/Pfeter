@@ -44,6 +44,7 @@ class GameBoard(object):
             self.enemies.remove(enemy)
             if enemy.name == 'Skeleton' and enemy.has_the_key:
                 self.hero.has_the_key = True
+            self.hero.leveling()
         else:
             enemy.strike(hero)
             if self.hero.hp <= 0:
