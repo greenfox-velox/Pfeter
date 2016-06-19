@@ -46,6 +46,15 @@ class Hero(Drawable, Character):
         self.dp += self.dice_6.roll(1)
         self.sp += self.dice_6.roll(1)
 
+    def enter_next_area(self):
+        rolled = self.dice_10.roll(1)
+        if rolled <= 5:
+            self.hp += self.full_hp // 10
+        elif rolled <= 9:
+            self.hp += self.full_hp // 3
+        else:
+            self.hp = self.full_hp
+
 class Enemy(object):
     def leveling(self, map_level):
         rolled = self.dice_10.roll(1)

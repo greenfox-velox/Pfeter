@@ -49,6 +49,7 @@ class GameBoard(object):
                 self.hero.x = 0
                 self.hero.y = 0
                 self.enemies = self.game_map.new_level_enemies()
+                self.hero.enter_next_area()
         else:
             enemy.strike(hero)
             if self.hero.hp <= 0:
