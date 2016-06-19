@@ -5,6 +5,7 @@ from drawables import Drawable
 class Character(StatPrint):
     def __init__(self):
         self.dice_6 = Dice(6)
+        self.dice_10 = Dice(10)
 
     def stat(self):
         return (self.name + ' (Level ' + str(self.level) + ') HP: ' + str(self.hp) + '/' + str(self.full_hp) + ' | DP: ' + str(self.dp) +' | SP: ' + str(self.sp))
@@ -45,23 +46,33 @@ class Hero(Drawable, Character):
         self.dp += self.dice_6.roll(1)
         self.sp += self.dice_6.roll(1)
 
-class Skeleton(Drawable, Character):
+class Enemy(object):
+    def leveling(self, map_level):
+        rolled = self.dice_10.roll(1)
+        if rolled <= 5:
+            return map_level
+        elif rolled <= 9:
+            return map_level + 1
+        else:
+            return map_level + 2
+
+class Skeleton(Drawable, Character, Enemy):
     def __init__(self, x, y, has_the_key, level = 1):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='images/skeleton.png')
         self.has_the_key = has_the_key
         self.name = 'Skeleton'
-        self.level = level
+        self.level = self.leveling(level)
         RollStats.roll_stats(self, hpc = 2, dpc = 1/2, level = self.level)
         self.full_hp = self.hp
 
-class Boss(Drawable, Character):
+class Boss(Drawable, Character, Enemy):
     def __init__(self, x, y, level = 1):
         Drawable.__init__(self, x, y)
         Character.__init__(self)
         self.image = PhotoImage(file='images/boss.png')
         self.name = 'Boss'
-        self.level = level
+        self.level = self.leveling(level)
         RollStats.roll_stats(self, hp_base = self.dice_6.roll(1), hpc = 2, dp_base = self.dice_6.roll(1)/2, dpc = self.level/2, sp_base = self.level, spc = self.level, level = self.level)
         self.full_hp = self.hp
