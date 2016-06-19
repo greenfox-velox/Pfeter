@@ -4,7 +4,7 @@ from drawables import Drawable
 
 class Character(StatPrint):
     def __init__(self):
-        self.dice_6 = Dice()
+        self.dice_6 = Dice(6)
 
     def stat(self):
         return (self.name + ' (Level ' + str(self.level) + ') HP: ' + str(self.hp) + '/' + str(self.full_hp) + ' | DP: ' + str(self.dp) +' | SP: ' + str(self.sp))

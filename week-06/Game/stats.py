@@ -7,11 +7,14 @@ class RollStats(object):
         self.sp = sp_base + self.dice_6.roll(spc) * level
 
 class Dice(object):
+    def __init__(self, sides):
+        self.sides = sides
+
     def roll(self, number_of_rolls):
         if number_of_rolls <= 1:
-            return randint(1,6)
+            return randint(1,self.sides)
         else:
-            return randint(1,6) + self.roll(number_of_rolls - 1)
+            return randint(1,self.sides) + self.roll(number_of_rolls - 1)
 
 class StatPrint(object):
     def stat_print(self, canvas, which_row, map_size):
