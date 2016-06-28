@@ -7,7 +7,9 @@ const numbers = [2.4, 3.5, 1.7, 3.3, 1.2];
 // bigger than 2 and all of it's elements should be rounded
 
 function biggerThan2(inputArray) {
-  return inputArray.filter(e => e > 2).map(e => Math.round(e));
+  return inputArray.filter(function (e) {
+    return e > 2;
+  }).map(e => Math.round(e));
 }
 
 console.log(biggerThan2(numbers));
