@@ -1,13 +1,9 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   width: 1000px;
   background: #000;
   font-family: sans-serif;
 }
-h1, .arrow{
+h1, .arrow {
   color: #fff;
 }
 
@@ -31,11 +27,12 @@ h1, .arrow{
   width: 800px;
 }
 
-.thumbnailpic{
-  width: 150px;
+.thumbnailpic {
+  margin: 10px 5px;
+  width : 150px;
+  height: 112.5px;
 }
 
-.arrow{
+.arrow {
   font-size: 100px;
-  height: 50px;
 }
