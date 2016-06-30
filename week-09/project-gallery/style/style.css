@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 1000px;
+  background: #000;
+  font-family: sans-serif;
+}
+h1, .arrow{
+  color: #fff;
+}
+
+.flex-row, .flex-column {
+  display: flex;
+}
+
+.flex-row {
+  flex-flow: row nowrap;
+}
+
+.flex-column {
+  flex-flow: column nowrap;
+}
+
+.spcbetween {
+  justify-content: space-between;
+}
+
+.bigpicture {
+  width: 800px;
+}
+
+.thumbnailpic{
+  width: 150px;
+}
+
+.arrow{
+  font-size: 100px;
+  height: 50px;
+}
