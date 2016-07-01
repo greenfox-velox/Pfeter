@@ -16,23 +16,25 @@ const thumbnails = document.querySelectorAll('.thumbnailpic');
 const thumbHalf = Math.floor(thumbnails.length / 2);
 const leftArrow = document.querySelector('.arrow.left');
 const rightArrow = document.querySelector('.arrow.right');
-
 let bigPicIndex = 0;
-document.querySelector('.bigpicture').src = picsUrls[bigPicIndex];
 
 function thumbnailChange() {
   for (let thumbIndex = 0; thumbIndex < thumbnails.length; thumbIndex++) {
-    if (bigPicIndex - thumbHalf + thumbIndex < 0) {
-      thumbnails[thumbIndex].src = picsUrls[picsUrls.length - thumbHalf + thumbIndex + bigPicIndex];
+    const thumbPictureIndex = thumbIndex + bigPicIndex - thumbHalf;
+    if (thumbPictureIndex < 0) {
+      thumbnails[thumbIndex].src = picsUrls[picsUrls.length + thumbPictureIndex];
     } else if (bigPicIndex + thumbIndex > picsUrls.length - 1 + thumbHalf) {
-      thumbnails[thumbIndex].src = picsUrls[Math.abs(picsUrls.length - bigPicIndex - thumbIndex + thumbHalf)];
+      thumbnails[thumbIndex].src = picsUrls[Math.abs(picsUrls.length - thumbPictureIndex)];
     } else {
-      thumbnails[thumbIndex].src = picsUrls[bigPicIndex - thumbHalf + thumbIndex];
+      thumbnails[thumbIndex].src = picsUrls[thumbPictureIndex];
     }
   }
 }
 
-thumbnailChange();
+function drawer() {
+  document.querySelector('.bigpicture').src = picsUrls[bigPicIndex];
+  thumbnailChange();
+}
 
 function changePicture(direction) {
   return function () {
@@ -49,9 +51,9 @@ function changePicture(direction) {
         bigPicIndex--;
       }
     }
-    document.querySelector('.bigpicture').src = picsUrls[bigPicIndex];
-    thumbnailChange();
+    drawer();
   }; }
 
+drawer();
 rightArrow.addEventListener('click', changePicture('next'));
 leftArrow.addEventListener('click', changePicture('previous'));
