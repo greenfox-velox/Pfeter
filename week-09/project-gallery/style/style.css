@@ -36,3 +36,7 @@ h1, .arrow {
 .arrow {
   font-size: 100px;
 }
+
+.hidden {
+  visibility : hidden;
+}

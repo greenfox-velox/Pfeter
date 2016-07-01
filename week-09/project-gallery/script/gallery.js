@@ -12,26 +12,46 @@ const picsUrls = [
   'images/9.jpg',
   'images/10.jpg',
 ];
+const thumbnails = document.querySelectorAll('.thumbnailpic');
+const thumbHalf = Math.floor(thumbnails.length / 2);
 const leftArrow = document.querySelector('.arrow.left');
 const rightArrow = document.querySelector('.arrow.right');
 
-let bigPictureIndex = 0;
-document.querySelector('.bigpicture').src = picsUrls[bigPictureIndex];
+let bigPicIndex = 0;
+document.querySelector('.bigpicture').src = picsUrls[bigPicIndex];
 
-function nextPicture() {
-  if (bigPictureIndex < picsUrls.length - 1) {
-    bigPictureIndex++;
-    document.querySelector('.bigpicture').src = picsUrls[bigPictureIndex];
+function thumbnailChange() {
+  for (let thumbIndex = 0; thumbIndex < thumbnails.length; thumbIndex++) {
+    if (bigPicIndex - thumbHalf + thumbIndex < 0) {
+      thumbnails[thumbIndex].src = picsUrls[picsUrls.length - thumbHalf + thumbIndex + bigPicIndex];
+    } else if (bigPicIndex + thumbIndex > picsUrls.length - 1 + thumbHalf) {
+      thumbnails[thumbIndex].src = picsUrls[Math.abs(picsUrls.length - bigPicIndex - thumbIndex + thumbHalf)];
+    } else {
+      thumbnails[thumbIndex].src = picsUrls[bigPicIndex - thumbHalf + thumbIndex];
+    }
   }
 }
 
-function previousPicture() {
-  if (bigPictureIndex > 0) {
-    bigPictureIndex--;
-    document.querySelector('.bigpicture').src = picsUrls[bigPictureIndex];
-  }
-}
+thumbnailChange();
 
-rightArrow.addEventListener('click', nextPicture);
+function changePicture(direction) {
+  return function () {
+    if (direction === 'next') {
+      if (bigPicIndex >= picsUrls.length - 1) {
+        bigPicIndex = 0;
+      } else {
+        bigPicIndex++;
+      }
+    } else if (direction === 'previous') {
+      if (bigPicIndex <= 0) {
+        bigPicIndex = picsUrls.length - 1;
+      } else {
+        bigPicIndex--;
+      }
+    }
+    document.querySelector('.bigpicture').src = picsUrls[bigPicIndex];
+    thumbnailChange();
+  }; }
 
-leftArrow.addEventListener('click', previousPicture);
+rightArrow.addEventListener('click', changePicture('next'));
+leftArrow.addEventListener('click', changePicture('previous'));
