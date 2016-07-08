@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body{
@@ -7,7 +7,7 @@ body{
 }
 
 .heading {
-  margin: 0 0 50px;
+    margin: 0 0 50px;
     font-family: Lato, sans-serif;
     font-size: 64px;
     font-weight: lighter;
@@ -15,12 +15,12 @@ body{
     text-transform: uppercase;
 }
 
-.todo-item, .input-field {
-    font-family: Lato-Regular, sans-serif;
+.todo-items, .input-field, .button-text {
+    font-family: Lato, sans-serif;
     font-size: 26px;
 }
 
-.todo-item {
+.todo-items {
     line-height: 2.2;
     color: #cecece;
     display:flex;
@@ -29,8 +29,6 @@ body{
 
 .button-text {
     background-color: #df69e8;
-    font-family: Lato-Regular, sans-serif;
-    font-size: 26px;
     color: #ffffff;
 }
 
@@ -43,6 +41,6 @@ body{
 }
 
 .trash {
-  margin: 0 10px;
-  width: 15px;
+    margin: 0 10px;
+    width: 15px;
 }
