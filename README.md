@@ -56,9 +56,9 @@ Drawing Fractals with TKinter Canvas
 ### Week 5 - Higher concepts in Programming
 Understanding the concept of unittetsting and TDD. Creating a minimal commandline app for managing todos.
 
-- TDD
-- Exceptions
-- Design patterns
+* TDD
+* Exceptions
+* Design patterns
 
 #### Project
 Command line Todo App
@@ -68,3 +68,21 @@ Make a tile map RPG game using python's Tkinter library.
 
 #### TkWanderer - The tkinter RPG game
 This is a hero based walking on tiles and killing monsters type of game. Heroes and monsters have levels and stats depending on their levels.
+
+### Week 7 - JavaScript
+
+* Basics
+* Array, Object
+* DOM
+
+#### Project - Gallery
+Create a fully functional image gallery using HTML, CSS and JavaScript.
+
+### Week 8 - Backend
+
+* JS OO + TAPE
+Dojo
+* Callbacks
+* REST
+
+#### Project - Todo API (Callbacks)
