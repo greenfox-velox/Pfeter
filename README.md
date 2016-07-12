@@ -81,8 +81,18 @@ Create a fully functional image gallery using HTML, CSS and JavaScript.
 ### Week 8 - Backend
 
 * JS OO + TAPE
-Dojo
 * Callbacks
 * REST
 
 #### Project - Todo API (Callbacks)
+
+### Week 9 - Databases
+Todo API + DB
+
+* Advanced JS
+* SQL
+* Project SQL
+* Project Mongo
+
+#### Project - Todo API + DB
+Todo App with database.
