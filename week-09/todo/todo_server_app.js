@@ -17,39 +17,26 @@ const con = mysql.createConnection({
 
 con.connect(function (err) {
   if (err) {
-    console.log('Error connecting to Db');
-    return;
+    return console.log('Error connecting to Db');
   }
   console.log('Connection established');
 });
 
+// con.end();
+
 app.get('/todos', function (req, res) {
   con.query('SELECT * FROM todos;',function(err, data){
     if(err) {
-      console.log(err.toString());
-      return;
+      return console.log(err.toString());
     }
     res.json(data);
   });
 });
 
-// con.query('INSERT INTO todos (text, completed) VALUES (?, 'false');' req.body.text, funtion....
-
-// app.post('/todos', function (req, res) {
-//   const newTodo = {
-//     completed: false,
-//     id: data.length + 1, // helyette a szervertől kellene lekérdezni az id-t
-//     text: req.body.text,
-//   };
-//   data.push(newTodo);
-//   res.json(newTodo);
-// });
-
 app.get('/todos/:id', function (req, res) {
   con.query('SELECT * FROM todos WHERE todos.id = ?', req.params.id, function (err, data){
     if(err) {
-      console.log(err.toString());
-      return;
+      return console.log(err.toString());
     }
     res.json(data[0]);
   });
@@ -58,22 +45,39 @@ app.get('/todos/:id', function (req, res) {
 app.put('/todos/:id', function (req, res) {
   con.query('UPDATE todos SET completed = "true" WHERE id = ?', req.params.id, function (err, data){
     if(err) {
-      console.log(err.toString());
-      return;
+      return console.log(err.toString());
     }
     con.
     res.json(data[0]);
   });
 });
 
-app.delete('/todos/:id', function (req, res) {
-  res.json(data.filter(function (e) {
-    if (e.id === +req.params.id) {
-      e.destroyed = true;
-      data.splice(data.indexOf(e), 1);
-      return e;
+app.post('/todos', function (req, res) {
+  con.query('INSERT INTO todos (text, completed) VALUES (?, "false");', req.body.text, function (err, data) {
+    if(err) {
+      return console.log(err.toString());
     }
-  })[0]);
+    con.query('SELECT * FROM todos WHERE id = ? AND text = ?', res.insertId, req.body.text, function (err, newData) {
+      if(err) {
+        return console.log(err.toString());
+      }
+      res.json(newData[0]);
+    });
+  });
+});
+
+app.delete('/todos/:id', function (req, res) {
+  con.query('UPDATE todos SET destroyed = "true" WHERE id = ?', req.params.id, function (err, data) {
+    if(err) {
+      return console.log(err.toString());
+    }
+    con.query('SELECT * FROM todos WHERE id = ?', req.params.id, function (err, result) {
+      if (err) {
+        return console.log(err.toString());
+      }
+      res.json(result[0]);
+    });
+  });
 });
 
 app.use(function (err, req, res, next) {
