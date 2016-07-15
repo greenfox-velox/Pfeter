@@ -22,11 +22,9 @@ con.connect(function (err) {
   console.log('Connection established');
 });
 
-// con.end();
-
 app.get('/todos', function (req, res) {
-  con.query('SELECT * FROM todos;',function(err, data){
-    if(err) {
+  con.query('SELECT * FROM todos WHERE destroyed = "false";', function (err, data) {
+    if (err) {
       return console.log(err.toString());
     }
     res.json(data);
@@ -34,8 +32,8 @@ app.get('/todos', function (req, res) {
 });
 
 app.get('/todos/:id', function (req, res) {
-  con.query('SELECT * FROM todos WHERE todos.id = ?', req.params.id, function (err, data){
-    if(err) {
+  con.query('SELECT * FROM todos WHERE todos.id = ?', req.params.id, function (err, data) {
+    if (err) {
       return console.log(err.toString());
     }
     res.json(data[0]);
@@ -43,46 +41,43 @@ app.get('/todos/:id', function (req, res) {
 });
 
 app.put('/todos/:id', function (req, res) {
-  con.query('UPDATE todos SET completed = "true" WHERE id = ?', req.params.id, function (err, data){
-    if(err) {
+  const compStatus = (req.body.completed === 'false' && 'true') || (req.body.completed === 'true' && 'false');
+  let newQuery = 'UPDATE todos SET completed = ? WHERE id = ?';
+  const table = [compStatus, req.params.id];
+  newQuery = mysql.format(newQuery, table);
+  con.query(newQuery, function (err, data) {
+    if (err) {
       return console.log(err.toString());
     }
-    con.
-    res.json(data[0]);
+    res.json(data);
   });
 });
 
 app.post('/todos', function (req, res) {
-  con.query('INSERT INTO todos (text, completed) VALUES (?, "false");', req.body.text, function (err, data) {
-    if(err) {
+  con.query('INSERT INTO todos (text, completed) VALUES (?, "false");', req.body.text, function (err) {
+    if (err) {
       return console.log(err.toString());
     }
-    con.query('SELECT * FROM todos WHERE id = ? AND text = ?', res.insertId, req.body.text, function (err, newData) {
-      if(err) {
-        return console.log(err.toString());
-      }
-      res.json(newData[0]);
-    });
+    res.json([{
+      id: res.insertId,
+      text: req.body.text,
+      completed: 'false',
+    }]);
   });
 });
 
 app.delete('/todos/:id', function (req, res) {
-  con.query('UPDATE todos SET destroyed = "true" WHERE id = ?', req.params.id, function (err, data) {
-    if(err) {
+  con.query('UPDATE todos SET destroyed = "true" WHERE id = ?', req.params.id, function (err) {
+    if (err) {
       return console.log(err.toString());
     }
-    con.query('SELECT * FROM todos WHERE id = ?', req.params.id, function (err, result) {
-      if (err) {
-        return console.log(err.toString());
-      }
-      res.json(result[0]);
-    });
+    res.json([{
+      id: req.params.id,
+      text: req.body.text,
+      completed: req.body.completed,
+      destroyed: 'true',
+    }]);
   });
-});
-
-app.use(function (err, req, res, next) {
-  res.sendStatus(404);
-  next();
 });
 
 app.listen(3000);
