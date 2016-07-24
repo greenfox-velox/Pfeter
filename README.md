@@ -96,3 +96,9 @@ Todo API + DB
 
 #### Project - Todo API + DB
 Todo App with database.
+
+### Week 10 - Full Stack project
+Organizing JavaScript code, MVC
+
+#### Calory Counter (MVC)
+Calory Counter with database.
