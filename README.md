@@ -100,5 +100,7 @@ Todo App with database.
 ### Week 10 - Full Stack project
 Organizing JavaScript code, MVC
 
-#### Calory Counter (MVC)
+#### Project - Calory Counter (MVC)
 Calory Counter with database.
+
+https://github.com/Pfeter/calories-counter
