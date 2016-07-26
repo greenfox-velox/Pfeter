@@ -104,3 +104,6 @@ Organizing JavaScript code, MVC
 Calory Counter with database.
 
 https://github.com/Pfeter/calories-counter
+
+### Week 11 - Projekt and Teamwork
+AngularJS
